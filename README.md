@@ -58,7 +58,6 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 - **Export** - Export conversations to TXT or JSON format
 - **Nano Banana Prompt Library** - Curated prompt gallery with search, category filters, image thumbnails, and one-click copy or send-to-Image-Studio
 - **Theme Customization** - Multiple color palettes with light / dark / system mode toggle
-- **Auto-Update Checker** - Startup check for new app versions with release notes and download link
 
 ### System Prompt Builder
 - **11 Caption Types**: Descriptive, Stable Diffusion, MidJourney, Danbooru tags, Art Critic, Product Listing, Social Media, and more
