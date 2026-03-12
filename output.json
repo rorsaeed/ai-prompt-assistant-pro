@@ -1,0 +1,17 @@
+{
+  "url": "https://generativelanguage.googleapis.com/v1beta/models/veo-2.0-generate-001:predictLongRunning",
+  "method": "POST",
+  "body": {
+    "instances": [
+      {
+        "video": {
+          "uri": "https://generativelanguage.googleapis.com/v1beta/files/some-video",
+          "encoding": "video/mp4"
+        }
+      }
+    ],
+    "parameters": {
+      "sampleCount": 1
+    }
+  }
+}

@@ -1,0 +1,67 @@
+name: ai_prompt_assistant
+description: AI Prompt Assistant - Multi-provider image analysis with vision models
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  dio: ^5.4.0
+  file_picker: ^6.1.1
+  flutter:
+    sdk: flutter
+  flutter_markdown: ^0.6.18
+  json_annotation: ^4.8.1
+  mime: ^1.0.4
+  path: ^1.8.3
+  path_provider: ^2.1.1
+  provider: ^6.1.1
+  share_plus: ^7.2.1
+  sqflite: ^2.3.2
+  sqflite_common_ffi: ^2.3.0
+  url_launcher: ^6.2.2
+  uuid: ^4.2.2
+  media_kit: ^1.1.11
+  media_kit_video: ^1.2.5
+  media_kit_libs_windows_video: ^1.0.10
+  window_manager: ^0.3.7
+  desktop_drop: ^0.7.0
+  archive: ^4.0.9
+  flutter_staggered_grid_view: ^0.7.0
+
+dev_dependencies:
+  build_runner: ^2.4.7
+  flutter_launcher_icons: ^0.14.4
+  flutter_lints: ^3.0.1
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.7.1
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/predefined_prompts.json
+    - assets/icon/app_icon.png
+
+flutter_launcher_icons:
+  android: false
+  ios: false
+  image_path: "assets/icon/app_icon.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/icon/app_icon.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/icon/app_icon.png"
+    icon_size: 256 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/icon/app_icon.png"
+  linux:
+    generate: true
+    image_path: "assets/icon/app_icon.png"

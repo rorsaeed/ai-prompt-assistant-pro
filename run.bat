@@ -1,0 +1,3 @@
+@echo off
+echo Running AI Prompt Assistant...
+flutter run -d windows

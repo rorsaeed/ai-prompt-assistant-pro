@@ -1,0 +1,16 @@
+{
+  "name": "models/veo-3.1-fast-generate-preview/operations/3vz83amzyt4h",
+  "done": true,
+  "response": {
+    "@type": "type.googleapis.com/google.ai.generativelanguage.v1beta.PredictLongRunningResponse",
+    "generateVideoResponse": {
+      "generatedSamples": [
+        {
+          "video": {
+            "uri": "https://generativelanguage.googleapis.com/v1beta/files/p031788h5mhu:download?alt=media"
+          }
+        }
+      ]
+    }
+  }
+}
