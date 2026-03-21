@@ -279,7 +279,7 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 5. **Step 2 (Generation)**: The AI populates those specific fields and generates a comprehensive `master_prompt`.
 6. **Review & Use**: The highly structured parameter payload is returned and ready to be used as a detailed prompt for high-end generation models.
 
-<video src="docs/screenshots/svg.mp4" controls width="100%"></video>
+<video src="docs/screenshots/svg.mp4" controls width="600"></video>
 
 ### Nano Banana Prompt Library
 
