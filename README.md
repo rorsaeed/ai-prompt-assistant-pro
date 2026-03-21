@@ -272,14 +272,14 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 
 > **Tip**: For animated SVGs, use the Play in Browser button for the smoothest preview. In-app animated rendering requires the Windows WebView2 runtime.
 
-<video src="docs/screenshots/svg.mp4" controls width="100%"></video>
-
 1. **Access the Pipeline**: The Prompt to JSON pipeline is integrated into generation screens, such as the Veo Video tab. Look for the **JSON Enhance** button.
 2. **Enter a Simple Prompt**: Type a basic concept or idea into the text input.
 3. **Execute Pipeline**: Click the **JSON Enhance** button.
 4. **Step 1 (Field Selection)**: The AI automatically determines which JSON fields (e.g., `camera_movement`, `lighting`, `color_palette`) are needed for your specific idea.
 5. **Step 2 (Generation)**: The AI populates those specific fields and generates a comprehensive `master_prompt`.
 6. **Review & Use**: The highly structured parameter payload is returned and ready to be used as a detailed prompt for high-end generation models.
+
+<video src="docs/screenshots/svg.mp4" controls width="100%"></video>
 
 ### Nano Banana Prompt Library
 
