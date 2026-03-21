@@ -1,6 +1,6 @@
 # AI Prompt Assistant - Flutter Desktop App
 
-A powerful Flutter desktop application for analyzing images and videos using multiple AI vision models.
+A powerful Flutter desktop application for analyzing images and videos using multiple AI vision models. Convert the original Python/Streamlit image-to-prompt application to a native desktop experience.
 
 ![AI Prompt Assistant – Chat Interface](docs/screenshots/chat_main.jpg)
 
@@ -13,6 +13,7 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 - **Google Gemini** - Cloud API with image and video support
 - **Veo Video Generation** - Powered by Google Video FX for professional cinematic results
 - **Image Studio** - High-quality image generation using Gemini 3 and Imagen 4 models
+- **Local Enhancer** - Self-contained LLM prompt enhancer for Wan2.1 image and video generation. No third-party software required — the backend is fully bundled with the app
 
 ### Image Studio (Generation & Editing)
 - **Text to Image** - Create stunning visuals from descriptive prompts
@@ -41,8 +42,17 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 - **Image to Video** - Use start and end images to guide video generation
 - **Extend Video** - Automatically extend existing videos by extracting the last frame and generating a continuation, then seamlessly merging them with FFmpeg
 - **Prompt Enhancement** - Built-in LLM-powered rewriter that uses attached images and video frames to create highly detailed cinematic prompts
+- **Audio-Aware Video Prompting** - Local Enhancer video modes can now use speech, ambience, music, and sound effects from attached videos to generate richer prompts
 - **Advanced Controls** - Configure aspect ratio (16:9, 9:16) and resolution (720p, 1080p, 4K)
 - **FFmpeg Integration** - Automatic downloading and configuration of FFmpeg for complex video operations (Windows auto-download)
+
+### SVG Generator
+- **Text to SVG** - Describe any object, icon, or scene and generate a fully self-contained SVG vector graphic
+- **Animated SVG** - Toggle to Animated mode to produce CSS-animated SVGs with looping `@keyframes` effects
+- **Reference Image** - Attach an image as a visual reference; the AI recreates it in vector format
+- **Multi-Provider** - Works with the API provider selected in the sidebar (Google Gemini, Ollama, LM Studio, Koboldcpp)
+- **Export Options** - Download as SVG, PNG, GIF, Animated PNG (APNG), MP4 (H.264), or MOV (lossless)
+- **Browser Preview** - Open animated SVGs in the system browser for full CSS animation playback
 
 ### Core Capabilities
 - **Multi-Model Execution** - Run queries against multiple models simultaneously
@@ -58,12 +68,32 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 - **Export** - Export conversations to TXT or JSON format
 - **Nano Banana Prompt Library** - Curated prompt gallery with search, category filters, image thumbnails, and one-click copy or send-to-Image-Studio
 - **Theme Customization** - Multiple color palettes with light / dark / system mode toggle
+- **Auto-Update Checker** - Startup check for new app versions with release notes and download link
+
+### Local Enhancer
+- **No Setup Required** - The Wan2.1 prompt-enhancement backend is bundled inside the app. No Ollama, no Python installation, no third-party tools needed.
+- **Auto Mode Detection** - Automatically picks the right enhancement mode (T2V, I2V, V2V, I2I, etc.) based on what media you have attached and your chosen output type.
+- **Auto System Prompt** - Global toggle that selects the optimal system prompt for each mode automatically, or lets you choose a custom prompt manually.
+- **Generation Output Type** - Choose Image or Video output; the enhancer adjusts its prompt style accordingly.
+- **11 Enhancement Modes** - T2V, T2I, T2T, I2V, IT2V, I2I, IT2I, V2V, VT2V, V2I, VT2I — covering all text, image, and video input combinations.
+- **Quantization Backends** - GGUF and Quanto INT8 supported for flexible VRAM usage.
+- **Configurable LLM Parameters** - Adjust max tokens, temperature, top-p, and seed from the Local Enhancer Settings dialog.
+- **Audio Understanding for Video Modes** - In Qwen video modes (V2V, VT2V, V2I, VT2I), the enhancer analyzes attached video audio locally with Whisper + CLAP and can incorporate dialogue, ambience, music, and sound effects into the rewritten prompt.
+- **Graceful Fallback** - If a video has no audio, or if local audio analysis fails, Local Enhancer automatically falls back to visual-only prompting instead of failing the request.
+- **Auto-Launch / Auto-Stop** - Backend starts automatically when you select the provider and shuts down when you switch away.
 
 ### System Prompt Builder
 - **11 Caption Types**: Descriptive, Stable Diffusion, MidJourney, Danbooru tags, Art Critic, Product Listing, Social Media, and more
 - **30 Length Options**: From "Very Short" (20-40 words) to "260 words", plus custom word counts
 - **25 Extra Options**: Control ethnicity/gender, lighting, camera details, watermarks, aesthetic quality, and more
-- **46 Predefined Prompts**: Built-in prompts for video formats (wan2, ltx-2), image editing (FLUX, Qwen), tagging (Danbooru, PonyXL), and various photography styles
+- **57 Predefined Prompts**: Built-in prompts for video formats (Wan2.1, LTX-2), image editing (FLUX, Qwen), tagging (Danbooru, PonyXL), various photography styles, and a dedicated **Wan2GP Modes** category covering all 11 enhancement modes used by Local Enhancer
+
+### Prompt to JSON Pipeline
+- **Two-Step AI Enhancement** - Advanced pipeline that converts simple casual text prompts into highly structured JSON payloads.
+- **Dynamic Field Selection** - Automatically analyzes your input to determine which specific fields are relevant (e.g., camera movement, lighting, wardrobe, audio, temporal flow).
+- **Master Prompt Generation** - Synthesizes all selected variables into a cohesive, highly descriptive `master_prompt` paragraph perfect for advanced models.
+- **Provider Agnostic** - Runs on whichever model and API provider you have currently selected in the sidebar.
+- **Generation Integration** - Integrated directly into generation screens (e.g., Veo Video generation via the "JSON Enhance" button), turning simple ideas into cinematic, parameter-rich JSON objects.
 
 ### Prompt Director Pro
 A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible from the chat input area via the ✨ magic wand button. Supports 9 AI models across image and video generation:
@@ -84,6 +114,8 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 - Windows, macOS, or Linux desktop platform
 - For local models: Ollama, LM Studio, or Koboldcpp installed and running
 - For Google Gemini: API key from [Google AI Studio](https://aistudio.google.com/app/api-keys)
+- **Local Enhancer**: No prerequisites — the backend is fully bundled with the app
+  - First use of Qwen video modes may trigger a one-time local download of additional audio-analysis models.
 
 ### Setup
 
@@ -143,6 +175,32 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 
 ![Chat Interface – Multi-Model Responses](docs/screenshots/chat_interface.jpg)
 
+### Local Enhancer
+
+1. **Select "Local Enhancer"** in the API Provider list in the sidebar — the backend starts automatically
+2. **Open Local Enhancer Settings** (gear icon) to configure the quantization backend, LLM parameters, and seed
+3. **Enable Auto System Prompt** (toggle in the sidebar) to let the app pick the best system prompt based on your attached media and output type, or disable it to use your own custom prompt
+4. **Select Output Type** (Image or Video) in the sidebar when Auto System Prompt is on
+5. **Attach media** (optional): images or videos — the mode is auto-detected from what you attach
+6. **For video attachments in Qwen modes**, Local Enhancer now analyzes both visuals and audio. Short dialogue, ambience, music, and sound effects may be reflected in the rewritten prompt when relevant.
+7. **Enter a prompt** and send — the enhancer rewrites it into a detailed Wan2.1-optimised prompt
+8. **Switch away** from Local Enhancer to automatically shut down the backend
+
+![Local Enhancer](docs/screenshots/local.jpg)
+
+#### Testing Audio-Aware Video Prompting
+
+1. Select **Local Enhancer** and choose **Qwen3.5-4B** or **Qwen3.5-9B**.
+2. Attach a short video with clear speech and/or obvious background audio.
+3. Send either:
+   - `analyze` for pure video analysis, or
+   - a normal instruction such as `Rewrite this into a cinematic prompt while preserving the dialogue and ambience`
+4. Verify that the returned prompt includes:
+   - visual scene details
+   - spoken content when present
+   - ambience, music, or sound effects when present
+5. Silent videos should still work and should fall back to visual-only prompting.
+
 ### Veo Video Generation
 
 1. **Switch to Veo Tab** in the sidebar
@@ -195,6 +253,33 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 - **Subfolders**: Right-click a folder → New Subfolder for nested organization
 - **Rename / Delete Folder**: Right-click (⋮ menu) on any folder
 - **Expand / Collapse**: Click a folder to toggle its contents
+
+### SVG Generator
+
+1. **Switch to the SVG Tab** in the top navigation bar
+2. **Select provider and model** in the sidebar — the generator uses whichever API provider and model are currently selected
+3. **Choose Mode**:
+   - *Static*: Generates a clean, detailed flat-art vector graphic
+   - *Animated*: Adds CSS `@keyframes` animations inside the SVG for looping effects
+4. **Attach Reference Image** (optional): Click the image icon to upload a photo — the AI will recreate it as an SVG
+5. **Describe your subject**: Type a description (e.g., "Space Rocket", "Isometric House", "Cyberpunk Helmet") or pick a quick suggestion chip
+6. **Generate**: Click the Send icon or press Enter
+7. **Export the result** using the toolbar on each generated card:
+   - **Copy** SVG source code to clipboard
+   - **Download** as `.svg`
+   - **Export** as PNG, GIF, Animated PNG, MP4, or MOV via the export menu
+   - **Play in Browser** (animated SVGs) — opens a full-screen HTML preview in your default browser
+
+> **Tip**: For animated SVGs, use the Play in Browser button for the smoothest preview. In-app animated rendering requires the Windows WebView2 runtime.
+
+<video src="docs/screenshots/svg.mp4" controls width="100%"></video>
+
+1. **Access the Pipeline**: The Prompt to JSON pipeline is integrated into generation screens, such as the Veo Video tab. Look for the **JSON Enhance** button.
+2. **Enter a Simple Prompt**: Type a basic concept or idea into the text input.
+3. **Execute Pipeline**: Click the **JSON Enhance** button.
+4. **Step 1 (Field Selection)**: The AI automatically determines which JSON fields (e.g., `camera_movement`, `lighting`, `color_palette`) are needed for your specific idea.
+5. **Step 2 (Generation)**: The AI populates those specific fields and generates a comprehensive `master_prompt`.
+6. **Review & Use**: The highly structured parameter payload is returned and ready to be used as a detailed prompt for high-end generation models.
 
 ### Nano Banana Prompt Library
 
@@ -293,12 +378,21 @@ Enable "Unload model after response" to automatically free VRAM after each gener
 - Local models: Reduce model size or enable GPU acceleration
 - Google: Check API rate limits and billing
 - Try selecting fewer models for concurrent execution
+- Local Enhancer video modes with audio enabled are slower than visual-only prompting because they run local speech transcription and audio tagging before final prompt generation
 
 ### Images not loading
 - Verify file permissions in temp_images directory
 - Check supported formats: png, jpg, jpeg, webp
 - Try re-uploading the image
 
+### Local Enhancer video prompt has no audio details
+- Audio understanding only runs for **Local Enhancer Qwen video modes** (`V2V`, `VT2V`, `V2I`, `VT2I`)
+- Use model **3** or **4** in the Local Enhancer provider
+- Retry with a short clip that has clear, loud speech or obvious background audio
+- Check the Python API log for `Failed to decode audio`, `Failed to transcribe audio`, or `Failed to classify audio events`
+- On first use, wait for the one-time Whisper / CLAP downloads to finish
+
+## Development
 
 
 ### Run Tests
