@@ -82,6 +82,11 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 - **Graceful Fallback** - If a video has no audio, or if local audio analysis fails, Local Enhancer automatically falls back to visual-only prompting instead of failing the request.
 - **Auto-Launch / Auto-Stop** - Backend starts automatically when you select the provider and shuts down when you switch away.
 
+> **Based on [Wan2GP](https://github.com/deepbeepmeep/Wan2GP) by
+> [@deepbeepmeep](https://github.com/deepbeepmeep).** This repository packages only
+> the prompt-enhancement component with a fully automated Windows setup.
+
+
 ### System Prompt Builder
 - **11 Caption Types**: Descriptive, Stable Diffusion, MidJourney, Danbooru tags, Art Critic, Product Listing, Social Media, and more
 - **30 Length Options**: From "Very Short" (20-40 words) to "260 words", plus custom word counts
