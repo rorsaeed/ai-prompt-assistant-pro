@@ -1,5 +1,27 @@
-# What's New in v1.1.0
+# What's New in v1.2.0
 
+## Highlights
+
+### Local Enhancer Gemma 4 Support
+- Added **Gemma 4 E4B**
+- Added **Gemma 4 26B A4B**
+- Gemma now runs through a dedicated `llama.cpp` multimodal backend path
+- First use of Gemma automatically bootstraps a pinned compatible `llama.cpp` runtime
+- Gemma model loading, status reporting, and download checks are now integrated into the same Local Enhancer flow as the existing models
+
+### Local Enhancer Stability
+- Improved Local Enhancer backend startup and error reporting for Gemma loads
+- Added runtime cleanup so closing the app also shuts down `llama-server.exe`
+- Cleaned up Local Enhancer model labels to use plain model names instead of `mode X` suffixes
+
+### PromptFill Template Studio
+- Added native PromptFill browsing, editing, and variable-filling workflows inside the desktop app
+- Included imported PromptFill categories, banks, and templates with inline variable editing and AI Smart Terms support
+- Added PromptFill media preview support for template images and videos
+
+---
+
+# What's New in v1.1.0
 ## New Features
 
 ### Local Enhancer (New Provider)

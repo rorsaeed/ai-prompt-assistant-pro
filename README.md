@@ -2,7 +2,20 @@
 
 A powerful Flutter desktop application for analyzing images and videos using multiple AI vision models. Convert the original Python/Streamlit image-to-prompt application to a native desktop experience.
 
+**[Try Online Demo](https://ai-prompt-assistant-web.vercel.app/)**
+
 ![AI Prompt Assistant – Chat Interface](docs/screenshots/chat_main.jpg)
+
+## What's New in v1.2.0
+
+- **Gemma 4 in Local Enhancer** - Added **Gemma 4 E4B** and **Gemma 4 26B A4B** as built-in Local Enhancer models.
+- **Dedicated Gemma Runtime** - Gemma models now run on a separate `llama.cpp` multimodal backend instead of the older Qwen-specific runtime path.
+- **Automatic `llama.cpp` Bootstrap** - The app now downloads and refreshes a pinned compatible `llama.cpp` runtime automatically the first time Gemma is used.
+- **PromptFill Template Studio** - Added the native PromptFill workflow for browsing, editing, and filling structured prompt templates directly inside the desktop app.
+- **Cleaner Model Names** - Local Enhancer model names in the UI and backend responses no longer show `mode 1`, `mode 2`, and similar suffixes.
+- **Shutdown Cleanup** - Closing the app now unloads the backend cleanly and shuts down `llama-server.exe` automatically.
+
+For a release-focused summary, see [WHATS_NEW.md](WHATS_NEW.md).
 
 ## Features
 
@@ -13,7 +26,7 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 - **Google Gemini** - Cloud API with image and video support
 - **Veo Video Generation** - Powered by Google Video FX for professional cinematic results
 - **Image Studio** - High-quality image generation using Gemini 3 and Imagen 4 models
-- **Local Enhancer** - Self-contained LLM prompt enhancer for Wan2.1 image and video generation. No third-party software required — the backend is fully bundled with the app
+- **Local Enhancer** - Self-contained LLM prompt enhancer for Wan2.1 image and video generation. No third-party software required — the backend is bundled with the app, and Gemma GGUF runtime support is bootstrapped automatically on first use
 
 ### Image Studio (Generation & Editing)
 - **Text to Image** - Create stunning visuals from descriptive prompts
@@ -54,6 +67,20 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 - **Export Options** - Download as SVG, PNG, GIF, Animated PNG (APNG), MP4 (H.264), or MOV (lossless)
 - **Browser Preview** - Open animated SVGs in the system browser for full CSS animation playback
 
+### PromptFill Template Studio
+- **Native PromptFill Workflow** - Browse, edit, and fill structured prompt templates directly inside the desktop app
+- **Complete PromptFill Dataset** - Includes all imported categories, banks, and templates from the original app, normalized to English-only labels and content
+- **Inline Variable Editing** - Click any variable chip in a template to pick from bank terms, local options, or add a custom value
+- **Smart Terms** - Generate context-aware variable suggestions with AI inside the variable picker dialog
+- **AI Smart Split** - Convert a plain prompt into a reusable variable-based template using the current chat model
+- **Template Media Types** - Switch templates between image and video modes with a built-in type selector
+- **Image and Video Preview** - Templates support cover images and inline video preview for original video templates
+- **Large Image Lightbox** - Click a template preview image to open a large zoomable preview
+- **Template Media Editing** - Set network URLs, local cover images, and video preview URLs directly from the editor
+
+> **PromptFill support is adapted from [Prompt Fill](https://github.com/TanShilongMario/PromptFill) by
+> [@TanShilongMario](https://github.com/TanShilongMario).** This desktop app ports the structured template workflow, imported data, and media-preview concepts into the native Flutter experience.
+
 ### Core Capabilities
 - **Multi-Model Execution** - Run queries against multiple models simultaneously
 - **Image Analysis** - Upload and analyze multiple images with drag-and-drop support
@@ -62,22 +89,24 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 - **Bulk Analysis** - Batch process entire folders of images
 - **System Prompt Builder** - Generate prompts with 11 caption types, 30 length options, and 25 extra options
 - **Prompt Director Pro** - AI image/video prompt writing helper with model-aware dropdowns for style, camera, lighting, composition, and video movement
+- **PromptFill Template Authoring** - Build reusable prompt systems with banks, variables, template tags, and media previews
 - **Conversation Management** - Save, load, rename, delete, and move conversations to folders
 - **Conversation Folders** - Organize chats in a nested folder tree with subfolder support
 - **Conversation Search** - Real-time search with debounce across all saved conversations
 - **Export** - Export conversations to TXT or JSON format
 - **Nano Banana Prompt Library** - Curated prompt gallery with search, category filters, image thumbnails, and one-click copy or send-to-Image-Studio
 - **Theme Customization** - Multiple color palettes with light / dark / system mode toggle
-- **Auto-Update Checker** - Startup check for new app versions with release notes and download link
 
 ### Local Enhancer
 - **No Setup Required** - The Wan2.1 prompt-enhancement backend is bundled inside the app. No Ollama, no Python installation, no third-party tools needed.
+- **Built-In Model Catalog** - Florence2 + LLaMA 3.2, Florence2 + LLaMA JoyCaption, Qwen3.5-4B Abliterated, Qwen3.5-9B Abliterated, Gemma 4 E4B, and Gemma 4 26B A4B.
 - **Auto Mode Detection** - Automatically picks the right enhancement mode (T2V, I2V, V2V, I2I, etc.) based on what media you have attached and your chosen output type.
 - **Auto System Prompt** - Global toggle that selects the optimal system prompt for each mode automatically, or lets you choose a custom prompt manually.
 - **Generation Output Type** - Choose Image or Video output; the enhancer adjusts its prompt style accordingly.
 - **11 Enhancement Modes** - T2V, T2I, T2T, I2V, IT2V, I2I, IT2I, V2V, VT2V, V2I, VT2I — covering all text, image, and video input combinations.
-- **Quantization Backends** - GGUF and Quanto INT8 supported for flexible VRAM usage.
+- **Quantization Backends** - Qwen models support GGUF and Quanto INT8. Gemma models are GGUF-only.
 - **Configurable LLM Parameters** - Adjust max tokens, temperature, top-p, and seed from the Local Enhancer Settings dialog.
+- **Gemma Runtime Bootstrap** - Gemma models automatically download a compatible pinned `llama.cpp` runtime the first time they are loaded.
 - **Audio Understanding for Video Modes** - In Qwen video modes (V2V, VT2V, V2I, VT2I), the enhancer analyzes attached video audio locally with Whisper + CLAP and can incorporate dialogue, ambience, music, and sound effects into the rewritten prompt.
 - **Graceful Fallback** - If a video has no audio, or if local audio analysis fails, Local Enhancer automatically falls back to visual-only prompting instead of failing the request.
 - **Auto-Launch / Auto-Stop** - Backend starts automatically when you select the provider and shuts down when you switch away.
@@ -85,7 +114,6 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 > **Based on [Wan2GP](https://github.com/deepbeepmeep/Wan2GP) by
 > [@deepbeepmeep](https://github.com/deepbeepmeep).** This repository packages only
 > the prompt-enhancement component with a fully automated Windows setup.
-
 
 ### System Prompt Builder
 - **11 Caption Types**: Descriptive, Stable Diffusion, MidJourney, Danbooru tags, Art Critic, Product Listing, Social Media, and more
@@ -121,6 +149,7 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 - For Google Gemini: API key from [Google AI Studio](https://aistudio.google.com/app/api-keys)
 - **Local Enhancer**: No prerequisites — the backend is fully bundled with the app
   - First use of Qwen video modes may trigger a one-time local download of additional audio-analysis models.
+  - First use of Gemma models may trigger a one-time local download of the pinned `llama.cpp` runtime.
 
 ### Setup
 
@@ -183,11 +212,11 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 ### Local Enhancer
 
 1. **Select "Local Enhancer"** in the API Provider list in the sidebar — the backend starts automatically
-2. **Open Local Enhancer Settings** (gear icon) to configure the quantization backend, LLM parameters, and seed
+2. **Open Local Enhancer Settings** (gear icon) to configure the model backend, LLM parameters, and seed
 3. **Enable Auto System Prompt** (toggle in the sidebar) to let the app pick the best system prompt based on your attached media and output type, or disable it to use your own custom prompt
 4. **Select Output Type** (Image or Video) in the sidebar when Auto System Prompt is on
 5. **Attach media** (optional): images or videos — the mode is auto-detected from what you attach
-6. **For video attachments in Qwen modes**, Local Enhancer now analyzes both visuals and audio. Short dialogue, ambience, music, and sound effects may be reflected in the rewritten prompt when relevant.
+6. **For video attachments in Qwen models**, Local Enhancer analyzes both visuals and audio. Short dialogue, ambience, music, and sound effects may be reflected in the rewritten prompt when relevant.
 7. **Enter a prompt** and send — the enhancer rewrites it into a detailed Wan2.1-optimised prompt
 8. **Switch away** from Local Enhancer to automatically shut down the backend
 
@@ -195,7 +224,7 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 
 #### Testing Audio-Aware Video Prompting
 
-1. Select **Local Enhancer** and choose **Qwen3.5-4B** or **Qwen3.5-9B**.
+1. Select **Local Enhancer** and choose **Qwen3.5-4B Abliterated** or **Qwen3.5-9B Abliterated**.
 2. Attach a short video with clear speech and/or obvious background audio.
 3. Send either:
    - `analyze` for pure video analysis, or
@@ -297,6 +326,25 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 
 ![Nano Banana Prompt Library](docs/screenshots/nano_banana.jpg)
 
+### PromptFill
+
+1. **Switch to the PromptFill tab** in the top navigation bar
+2. **Browse templates** by search, type, and tag filters in the left sidebar
+3. **Select a template** to open it in the visual editor
+4. **Fill variables** by clicking any inline chip in the template body
+5. **Use Smart Terms** in the picker dialog to generate AI suggestions for the current variable in the context of the full template
+6. **Add custom values** when no existing bank option fits your use case
+7. **Edit template content** with the Edit button to work directly with raw `{{variable}}` placeholders
+8. **Use AI Smart Split** from the AI tools menu to turn a plain prompt into a reusable template with extracted variables
+9. **Manage template preview media** from the preview panel:
+   - switch the template between **Image** and **Video** type
+   - set or replace the cover image from a local file or URL
+   - set the video preview URL for video templates
+   - click the cover image to open a large zoomable preview
+10. **Preview original video templates** inline in the editor when a template includes a saved `videoUrl`
+
+![PromptFill](docs/screenshots/PromptFill.jpg)
+![PromptFill](docs/screenshots/PromptFill2.jpg)
 ## Configuration
 
 ### Config File Location
@@ -392,13 +440,12 @@ Enable "Unload model after response" to automatically free VRAM after each gener
 
 ### Local Enhancer video prompt has no audio details
 - Audio understanding only runs for **Local Enhancer Qwen video modes** (`V2V`, `VT2V`, `V2I`, `VT2I`)
-- Use model **3** or **4** in the Local Enhancer provider
+- Use **Qwen3.5-4B Abliterated** or **Qwen3.5-9B Abliterated** in the Local Enhancer provider
 - Retry with a short clip that has clear, loud speech or obvious background audio
 - Check the Python API log for `Failed to decode audio`, `Failed to transcribe audio`, or `Failed to classify audio events`
 - On first use, wait for the one-time Whisper / CLAP downloads to finish
 
 ## Development
-
 
 ### Run Tests
 ```bash
