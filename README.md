@@ -142,7 +142,7 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 ## Installation for Users
 
 1. **Open the latest release**
-   - Download the newest package from [GitHub Releases](https://github.com/rorsaeed/ai_prompt_assistant/releases).
+   - Download the newest package from [GitHub Releases](https://github.com/rorsaeed/ai-prompt-assistant-pro/releases).
 
 2. **Choose the Windows package you want**
    - `Installer_Win_X64.exe` for the normal installer experience
@@ -172,8 +172,8 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/rorsaeed/ai_prompt_assistant.git
-   cd ai_prompt_assistant
+   git clone https://github.com/rorsaeed/ai-prompt-assistant-pro.git
+   cd ai-prompt-assistant-pro
    ```
 
 2. **Install dependencies**
@@ -464,7 +464,6 @@ Enable "Unload model after response" to automatically free VRAM after each gener
 - On first use, wait for the one-time Whisper / CLAP downloads to finish
 
 ## Development
-
 
 ### Run Tests
 ```bash
