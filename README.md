@@ -7,19 +7,18 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 ![AI Prompt Assistant – Chat Interface](docs/screenshots/chat_main.jpg)
 
 ## What's New in v1.2.0
-
+- **Free Provider (g4f.space)** - New zero-config cloud provider. No API key needed. Choose from Groq, Ollama, Pollinations, Nvidia, and Gemini routes via the public G4F relay.
+- **Searchable Model Picker** - The Free provider replaces chip selection with a live-search list so you can quickly find models from large route catalogs.
+- **Free Provider is Now Default** - New installs open with the Free provider selected so users can start chatting immediately.
 - **Gemma 4 in Local Enhancer** - Added **Gemma 4 E4B** and **Gemma 4 26B A4B** as built-in Local Enhancer models.
-- **Dedicated Gemma Runtime** - Gemma models now run on a separate `llama.cpp` multimodal backend instead of the older Qwen-specific runtime path.
-- **Automatic `llama.cpp` Bootstrap** - The app now downloads and refreshes a pinned compatible `llama.cpp` runtime automatically the first time Gemma is used.
 - **PromptFill Template Studio** - Added the native PromptFill workflow for browsing, editing, and filling structured prompt templates directly inside the desktop app.
-- **Cleaner Model Names** - Local Enhancer model names in the UI and backend responses no longer show `mode 1`, `mode 2`, and similar suffixes.
-- **Shutdown Cleanup** - Closing the app now unloads the backend cleanly and shuts down `llama-server.exe` automatically.
 
 For a release-focused summary, see [WHATS_NEW.md](WHATS_NEW.md).
 
 ## Features
 
 ### Multi-Provider Support
+- **Free (g4f.space)** - Zero-configuration cloud provider via the public G4F relay — no API key required. Choose from Groq, Ollama, Pollinations, Nvidia, and Gemini routes with a searchable model picker
 - **Ollama** - Local model hosting with keep-alive configuration
 - **LM Studio** - Local OpenAI-compatible API with model unloading
 - **Koboldcpp** - Local inference server
@@ -140,7 +139,25 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 
 ![Prompt Director Pro Dialog](docs/screenshots/prompt_director.jpg)
 
-## Installation
+## Installation for Users
+
+1. **Open the latest release**
+   - Download the newest package from [GitHub Releases](https://github.com/rorsaeed/ai_prompt_assistant/releases).
+
+2. **Choose the Windows package you want**
+   - `Installer_Win_X64.exe` for the normal installer experience
+   - `ai_prompt_assistant.zip` for a portable build you can extract and run manually
+
+3. **Install or extract**
+   - If you downloaded the installer, run it and follow the setup steps.
+   - If you downloaded the ZIP, extract it to a folder of your choice and launch `ai_prompt_assistant.exe`.
+
+4. **Start using the app**
+   - The `Free (g4f.space)` provider works without an API key.
+   - Google Gemini still requires your own API key.
+   - Local Enhancer is bundled with the app, but first use may trigger one-time runtime or model downloads.
+
+## Installation for Developers
 
 ### Prerequisites
 - Flutter SDK 3.0 or later
@@ -155,7 +172,8 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 
 1. **Clone the repository**
    ```bash
-   cd flutter_app/ai_prompt_assistant
+   git clone https://github.com/rorsaeed/ai_prompt_assistant.git
+   cd ai_prompt_assistant
    ```
 
 2. **Install dependencies**
@@ -446,6 +464,7 @@ Enable "Unload model after response" to automatically free VRAM after each gener
 - On first use, wait for the one-time Whisper / CLAP downloads to finish
 
 ## Development
+
 
 ### Run Tests
 ```bash

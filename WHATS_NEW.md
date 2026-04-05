@@ -1,18 +1,20 @@
 # What's New in v1.2.0
 
 ## Highlights
+### Free Provider (g4f.space)
+A new **Free** provider that connects to the public [g4f.space](https://g4f.space) relay — no API key, no account, no setup required.
+
+- **5 Routes** — Groq, Ollama, Pollinations, Nvidia NIM, and Gemini; switch with a single dropdown in the sidebar
+- **Searchable Model Picker** — type to filter the full model list returned by the selected route; tap a row to select (single-select radio style)
+- **Image Support** — images are sent as standard OpenAI multipart content; Gemini and Pollinations routes generally have the best multimodal support
+- **Default Provider** — selected automatically for new installs so users can start chatting with zero configuration
+- **Route Info Banner** — a contextual note below the route dropdown explains that not all models or routes support image analysis and suggests switching routes (e.g., Gemini or Pollinations) if a request fails
+- **Availability Note** — as a public free relay, individual routes and models may be rate-limited or temporarily unavailable
 
 ### Local Enhancer Gemma 4 Support
 - Added **Gemma 4 E4B**
 - Added **Gemma 4 26B A4B**
-- Gemma now runs through a dedicated `llama.cpp` multimodal backend path
-- First use of Gemma automatically bootstraps a pinned compatible `llama.cpp` runtime
 - Gemma model loading, status reporting, and download checks are now integrated into the same Local Enhancer flow as the existing models
-
-### Local Enhancer Stability
-- Improved Local Enhancer backend startup and error reporting for Gemma loads
-- Added runtime cleanup so closing the app also shuts down `llama-server.exe`
-- Cleaned up Local Enhancer model labels to use plain model names instead of `mode X` suffixes
 
 ### PromptFill Template Studio
 - Added native PromptFill browsing, editing, and variable-filling workflows inside the desktop app
