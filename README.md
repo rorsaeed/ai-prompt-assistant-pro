@@ -1,6 +1,6 @@
 # AI Prompt Assistant - Flutter Desktop App
 
-A powerful Flutter desktop application for analyzing images and videos using multiple AI vision models. Convert the original Python/Streamlit image-to-prompt application to a native desktop experience.
+A powerful Flutter desktop application for analyzing images and videos using multiple AI vision models and generating AI-enhanced prompts for image/video generation workflows.
 
 **[Try Online Demo](https://ai-prompt-assistant-web.vercel.app/)**
 
@@ -25,7 +25,7 @@ For a release-focused summary, see [WHATS_NEW.md](WHATS_NEW.md).
 - **Google Gemini** - Cloud API with image and video support
 - **Veo Video Generation** - Powered by Google Video FX for professional cinematic results
 - **Image Studio** - High-quality image generation using Gemini 3 and Imagen 4 models
-- **Local Enhancer** - Self-contained LLM prompt enhancer for Wan2.1 image and video generation. No third-party software required — the backend is bundled with the app, and Gemma GGUF runtime support is bootstrapped automatically on first use
+- **Local Enhancer** - Self-contained GGUF-based prompt enhancer. No third-party software required — models and the llama.cpp runtime are downloaded automatically on first use
 
 ### Image Studio (Generation & Editing)
 - **Text to Image** - Create stunning visuals from descriptive prompts
@@ -54,7 +54,6 @@ For a release-focused summary, see [WHATS_NEW.md](WHATS_NEW.md).
 - **Image to Video** - Use start and end images to guide video generation
 - **Extend Video** - Automatically extend existing videos by extracting the last frame and generating a continuation, then seamlessly merging them with FFmpeg
 - **Prompt Enhancement** - Built-in LLM-powered rewriter that uses attached images and video frames to create highly detailed cinematic prompts
-- **Audio-Aware Video Prompting** - Local Enhancer video modes can now use speech, ambience, music, and sound effects from attached videos to generate richer prompts
 - **Advanced Controls** - Configure aspect ratio (16:9, 9:16) and resolution (720p, 1080p, 4K)
 - **FFmpeg Integration** - Automatic downloading and configuration of FFmpeg for complex video operations (Windows auto-download)
 
@@ -97,28 +96,23 @@ For a release-focused summary, see [WHATS_NEW.md](WHATS_NEW.md).
 - **Theme Customization** - Multiple color palettes with light / dark / system mode toggle
 
 ### Local Enhancer
-- **No Setup Required** - The Wan2.1 prompt-enhancement backend is bundled inside the app. No Ollama, no Python installation, no third-party tools needed.
-- **Built-In Model Catalog** - Florence2 + LLaMA 3.2, Florence2 + LLaMA JoyCaption, Qwen3.5-4B Abliterated, Qwen3.5-9B Abliterated, Gemma 4 E4B, and Gemma 4 26B A4B.
+- **No Setup Required** - Models and the llama.cpp runtime are downloaded automatically on first use. No Python, no Ollama, no third-party tools needed.
+- **Built-In Model Catalog** - LLaMA JoyCaption, Qwen3.5-4B Abliterated, Qwen3.5-9B Abliterated, Gemma 4 E4B, and Gemma 4 26B A4B.
 - **Auto Mode Detection** - Automatically picks the right enhancement mode (T2V, I2V, V2V, I2I, etc.) based on what media you have attached and your chosen output type.
 - **Auto System Prompt** - Global toggle that selects the optimal system prompt for each mode automatically, or lets you choose a custom prompt manually.
 - **Generation Output Type** - Choose Image or Video output; the enhancer adjusts its prompt style accordingly.
 - **11 Enhancement Modes** - T2V, T2I, T2T, I2V, IT2V, I2I, IT2I, V2V, VT2V, V2I, VT2I — covering all text, image, and video input combinations.
-- **Quantization Backends** - Qwen models support GGUF and Quanto INT8. Gemma models are GGUF-only.
-- **Configurable LLM Parameters** - Adjust max tokens, temperature, top-p, and seed from the Local Enhancer Settings dialog.
-- **Gemma Runtime Bootstrap** - Gemma models automatically download a compatible pinned `llama.cpp` runtime the first time they are loaded.
-- **Audio Understanding for Video Modes** - In Qwen video modes (V2V, VT2V, V2I, VT2I), the enhancer analyzes attached video audio locally with Whisper + CLAP and can incorporate dialogue, ambience, music, and sound effects into the rewritten prompt.
-- **Graceful Fallback** - If a video has no audio, or if local audio analysis fails, Local Enhancer automatically falls back to visual-only prompting instead of failing the request.
-- **Auto-Launch / Auto-Stop** - Backend starts automatically when you select the provider and shuts down when you switch away.
-
-> **Based on [Wan2GP](https://github.com/deepbeepmeep/Wan2GP) by
-> [@deepbeepmeep](https://github.com/deepbeepmeep).** This repository packages only
-> the prompt-enhancement component with a fully automated Windows setup.
+- **Configurable LLM Parameters** - Adjust max tokens, temperature, top-p, seed, video analysis FPS, and llama.cpp runtime version from the Local Enhancer Settings dialog.
+- **llama.cpp Version Control** - Choose which llama.cpp release to use, with a one-click "fetch latest" button that queries the GitHub API.
+- **Audio-Aware Video Prompting** - When using Gemma 4 E4B with a video that has an audio track (and a compatible llama.cpp audio mmproj), the enhancer can incorporate speech, ambience, and sound design into the rewritten prompt. Falls back to visual-only gracefully.
+- **Graceful Fallback** - If audio processing is unsupported or the video has no audio, Local Enhancer automatically falls back to visual-only prompting.
+- **Auto-Launch / Auto-Stop** - Runtime starts automatically when you select the provider and shuts down when you switch away.
 
 ### System Prompt Builder
 - **11 Caption Types**: Descriptive, Stable Diffusion, MidJourney, Danbooru tags, Art Critic, Product Listing, Social Media, and more
 - **30 Length Options**: From "Very Short" (20-40 words) to "260 words", plus custom word counts
 - **25 Extra Options**: Control ethnicity/gender, lighting, camera details, watermarks, aesthetic quality, and more
-- **57 Predefined Prompts**: Built-in prompts for video formats (Wan2.1, LTX-2), image editing (FLUX, Qwen), tagging (Danbooru, PonyXL), various photography styles, and a dedicated **Wan2GP Modes** category covering all 11 enhancement modes used by Local Enhancer
+- **57 Predefined Prompts**: Built-in prompts for video formats, image editing, tagging, photography styles, and a dedicated **Local Enhancer Modes** category covering all 11 enhancement modes
 
 ### Prompt to JSON Pipeline
 - **Two-Step AI Enhancement** - Advanced pipeline that converts simple casual text prompts into highly structured JSON payloads.
@@ -128,7 +122,7 @@ For a release-focused summary, see [WHATS_NEW.md](WHATS_NEW.md).
 - **Generation Integration** - Integrated directly into generation screens (e.g., Veo Video generation via the "JSON Enhance" button), turning simple ideas into cinematic, parameter-rich JSON objects.
 
 ### Prompt Director Pro
-A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible from the chat input area via the ✨ magic wand button. Supports 9 AI models across image and video generation:
+A built-in prompt writing helper accessible from the chat input area via the ✨ magic wand button. Supports 9 AI models across image and video generation:
 
 - **9 AI Models**: Flux, Midjourney 7, Nano Banana, SeeDream 4, Z-Image, Qwen, Wan 2.2/2.1 Video, LTX-2 Video
 - **Model-Aware Sections**: Each model shows only its relevant controls — image models show camera/composition, video models add movement/pacing
@@ -164,9 +158,7 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 - Windows, macOS, or Linux desktop platform
 - For local models: Ollama, LM Studio, or Koboldcpp installed and running
 - For Google Gemini: API key from [Google AI Studio](https://aistudio.google.com/app/api-keys)
-- **Local Enhancer**: No prerequisites — the backend is fully bundled with the app
-  - First use of Qwen video modes may trigger a one-time local download of additional audio-analysis models.
-  - First use of Gemma models may trigger a one-time local download of the pinned `llama.cpp` runtime.
+- **Local Enhancer**: No prerequisites — models and the llama.cpp runtime are downloaded automatically on first use
 
 ### Setup
 
@@ -221,37 +213,23 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 2. **Upload videos** (Google only): Click "Add Videos"
 3. **Enter your message** or click "Analyze Image(s)" for media-only analysis
 4. **View streaming responses** from all selected models simultaneously
-6. **Open Prompt Director** (✨ wand icon next to message box) to build image/video prompts with guided dropdowns
-7. **Regenerate** any response by clicking the refresh icon
-6. **Delete** messages using the × button
+5. **Open Prompt Director** (✨ wand icon next to message box) to build image/video prompts with guided dropdowns
+6. **Regenerate** any response by clicking the refresh icon
+7. **Delete** messages using the × button
 
 ![Chat Interface – Multi-Model Responses](docs/screenshots/chat_interface.jpg)
 
 ### Local Enhancer
 
-1. **Select "Local Enhancer"** in the API Provider list in the sidebar — the backend starts automatically
-2. **Open Local Enhancer Settings** (gear icon) to configure the model backend, LLM parameters, and seed
+1. **Select "Local Enhancer"** in the API Provider list in the sidebar — the runtime starts automatically
+2. **Open Local Enhancer Settings** (gear icon) to configure the model, LLM parameters, video FPS, and llama.cpp version
 3. **Enable Auto System Prompt** (toggle in the sidebar) to let the app pick the best system prompt based on your attached media and output type, or disable it to use your own custom prompt
 4. **Select Output Type** (Image or Video) in the sidebar when Auto System Prompt is on
 5. **Attach media** (optional): images or videos — the mode is auto-detected from what you attach
-6. **For video attachments in Qwen models**, Local Enhancer analyzes both visuals and audio. Short dialogue, ambience, music, and sound effects may be reflected in the rewritten prompt when relevant.
-7. **Enter a prompt** and send — the enhancer rewrites it into a detailed Wan2.1-optimised prompt
-8. **Switch away** from Local Enhancer to automatically shut down the backend
+6. **Enter a prompt** and send — the enhancer rewrites it into a detailed generation prompt
+7. **Switch away** from Local Enhancer to automatically shut down the runtime
 
 ![Local Enhancer](docs/screenshots/local.jpg)
-
-#### Testing Audio-Aware Video Prompting
-
-1. Select **Local Enhancer** and choose **Qwen3.5-4B Abliterated** or **Qwen3.5-9B Abliterated**.
-2. Attach a short video with clear speech and/or obvious background audio.
-3. Send either:
-   - `analyze` for pure video analysis, or
-   - a normal instruction such as `Rewrite this into a cinematic prompt while preserving the dialogue and ambience`
-4. Verify that the returned prompt includes:
-   - visual scene details
-   - spoken content when present
-   - ambience, music, or sound effects when present
-5. Silent videos should still work and should fall back to visual-only prompting.
 
 ### Veo Video Generation
 
@@ -324,6 +302,8 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 
 > **Tip**: For animated SVGs, use the Play in Browser button for the smoothest preview. In-app animated rendering requires the Windows WebView2 runtime.
 
+### Prompt to JSON Pipeline
+
 1. **Access the Pipeline**: The Prompt to JSON pipeline is integrated into generation screens, such as the Veo Video tab. Look for the **JSON Enhance** button.
 2. **Enter a Simple Prompt**: Type a basic concept or idea into the text input.
 3. **Execute Pipeline**: Click the **JSON Enhance** button.
@@ -363,6 +343,7 @@ A built-in prompt writing helper (inspired by AILTC Prompt Director) accessible 
 
 ![PromptFill](docs/screenshots/PromptFill.jpg)
 ![PromptFill](docs/screenshots/PromptFill2.jpg)
+
 ## Configuration
 
 ### Config File Location
@@ -449,19 +430,16 @@ Enable "Unload model after response" to automatically free VRAM after each gener
 - Local models: Reduce model size or enable GPU acceleration
 - Google: Check API rate limits and billing
 - Try selecting fewer models for concurrent execution
-- Local Enhancer video modes with audio enabled are slower than visual-only prompting because they run local speech transcription and audio tagging before final prompt generation
 
 ### Images not loading
 - Verify file permissions in temp_images directory
 - Check supported formats: png, jpg, jpeg, webp
 - Try re-uploading the image
 
-### Local Enhancer video prompt has no audio details
-- Audio understanding only runs for **Local Enhancer Qwen video modes** (`V2V`, `VT2V`, `V2I`, `VT2I`)
-- Use **Qwen3.5-4B Abliterated** or **Qwen3.5-9B Abliterated** in the Local Enhancer provider
-- Retry with a short clip that has clear, loud speech or obvious background audio
-- Check the Python API log for `Failed to decode audio`, `Failed to transcribe audio`, or `Failed to classify audio events`
-- On first use, wait for the one-time Whisper / CLAP downloads to finish
+### Local Enhancer fails to start
+- Check the log file in your system temp directory (`local_enhancer_<model>_<timestamp>.log`)
+- Try bumping the llama.cpp version in Local Enhancer Settings using the "fetch latest" button
+- Delete the cached runtime from `%LOCALAPPDATA%\ai_prompt_assistant\local_enhancer\runtime` and restart
 
 ## Development
 
@@ -473,17 +451,18 @@ flutter test
 ### Code Generation
 ```bash
 # Generate json_serializable code
-flutter pub run build_runner build
+dart run build_runner build --delete-conflicting-outputs
 
 # Watch mode for development
-flutter pub run build_runner watch
+dart run build_runner watch --delete-conflicting-outputs
 ```
 
 ## Architecture
 
 - **State Management**: Provider pattern with ChangeNotifier
 - **HTTP Client**: Dio for streaming SSE responses and multipart uploads
-- **Video Processing**: FFmpeg (via `ffmpeg_kit_flutter` and raw CLI) for frame extraction and concatenation
+- **Local Inference**: llama.cpp (`llama-server`) subprocess, downloaded and managed automatically
+- **Video Processing**: FFmpeg (raw CLI) for frame extraction, audio extraction, and video concatenation
 - **Media Playback**: `media_kit` for cross-platform video preview and thumbnails
 - **File I/O**: path_provider for cross-platform directories
 - **Serialization**: json_serializable for type-safe JSON
@@ -502,3 +481,5 @@ Please refer to individual file headers or contact the repository owner for deta
 ## Support
 
 For issues, feature requests, or contributions, please visit the GitHub repository.
+
+
