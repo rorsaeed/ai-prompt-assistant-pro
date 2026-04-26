@@ -1,15 +1,18 @@
-# What's New in v1.2.0
+# What's New in v1.3.0
 
 ## Highlights
-### Free Provider (g4f.space)
-A new **Free** provider that connects to the public [g4f.space](https://g4f.space) relay — no API key, no account, no setup required.
+### Libraries Tab
+The prompt-library experience has been upgraded from a single Nano Banana gallery into a unified **Libraries** tab that supports multiple prompt sources in one place.
+
+- **Multi-Source Browser** — switch between Nano Banana Pro, Seedance 2.0, GPT Image 1.5, SeeDream 4.5, Gemini 3, and Grok Imagine from the same screen
+
+### Free Provider
+A new **Free** provider that connects to  public relay — no API key, no account, no setup required.
 
 - **5 Routes** — Groq, Ollama, Pollinations, Nvidia NIM, and Gemini; switch with a single dropdown in the sidebar
 - **Searchable Model Picker** — type to filter the full model list returned by the selected route; tap a row to select (single-select radio style)
 - **Image Support** — images are sent as standard OpenAI multipart content; Gemini and Pollinations routes generally have the best multimodal support
 - **Default Provider** — selected automatically for new installs so users can start chatting with zero configuration
-- **Route Info Banner** — a contextual note below the route dropdown explains that not all models or routes support image analysis and suggests switching routes (e.g., Gemini or Pollinations) if a request fails
-- **Availability Note** — as a public free relay, individual routes and models may be rate-limited or temporarily unavailable
 
 ### Local Enhancer Gemma 4 Support
 - Added **Gemma 4 E4B**

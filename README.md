@@ -6,8 +6,11 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 
 ![AI Prompt Assistant – Chat Interface](docs/screenshots/chat_main.jpg)
 
-## What's New in v1.2.0
-- **Free Provider (g4f.space)** - New zero-config cloud provider. No API key needed. Choose from Groq, Ollama, Pollinations, Nvidia, and Gemini routes via the public G4F relay.
+## What's New in v1.2.2
+- **Expanded Provider Catalog** - Added first-class chat providers for OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, and NVIDIA.
+- **Custom OpenAI-Compatible Providers** - Add your own provider name, base URL, and API key for self-hosted or gateway APIs that speak the OpenAI chat format.
+- **Provider Settings Manager** - Enable or hide providers from the sidebar, configure per-provider API keys and base URLs, and keep the sidebar focused on the providers you use.
+- **Free Provider** - New zero-config cloud provider. No API key needed. Choose from Groq, Ollama, Pollinations, Nvidia, and Gemini routes via the public G4F relay.
 - **Searchable Model Picker** - The Free provider replaces chip selection with a live-search list so you can quickly find models from large route catalogs.
 - **Free Provider is Now Default** - New installs open with the Free provider selected so users can start chatting immediately.
 - **Gemma 4 in Local Enhancer** - Added **Gemma 4 E4B** and **Gemma 4 26B A4B** as built-in Local Enhancer models.
@@ -18,11 +21,17 @@ For a release-focused summary, see [WHATS_NEW.md](WHATS_NEW.md).
 ## Features
 
 ### Multi-Provider Support
-- **Free (g4f.space)** - Zero-configuration cloud provider via the public G4F relay — no API key required. Choose from Groq, Ollama, Pollinations, Nvidia, and Gemini routes with a searchable model picker
+- **Free** - Zero-configuration cloud provider via the public G4F relay — no API key required. Choose from Groq, Ollama, Pollinations, Nvidia, and Gemini routes with a searchable model picker
 - **Ollama** - Local model hosting with keep-alive configuration
 - **LM Studio** - Local OpenAI-compatible API with model unloading
 - **Koboldcpp** - Local inference server
 - **Google Gemini** - Cloud API with image and video support
+- **OpenAI** - GPT, reasoning, image, and video-capable models with per-provider API key support
+- **Anthropic** - Claude chat models via a dedicated Anthropic provider
+- **Mistral** - Mistral chat models and supported image tooling
+- **OpenRouter, Groq, Together, SwiftRouter, NVIDIA** - OpenAI-compatible cloud and gateway providers with configurable base URLs
+- **Custom Providers** - Add any OpenAI-compatible endpoint from the API settings screen, then fetch models and use it like a built-in provider
+- **Provider Visibility Controls** - Show only the providers you want in the sidebar while keeping all provider settings available in the API settings dialog
 - **Veo Video Generation** - Powered by Google Video FX for professional cinematic results
 - **Image Studio** - High-quality image generation using Gemini 3 and Imagen 4 models
 - **Local Enhancer** - Self-contained GGUF-based prompt enhancer. No third-party software required — models and the llama.cpp runtime are downloaded automatically on first use
@@ -61,7 +70,7 @@ For a release-focused summary, see [WHATS_NEW.md](WHATS_NEW.md).
 - **Text to SVG** - Describe any object, icon, or scene and generate a fully self-contained SVG vector graphic
 - **Animated SVG** - Toggle to Animated mode to produce CSS-animated SVGs with looping `@keyframes` effects
 - **Reference Image** - Attach an image as a visual reference; the AI recreates it in vector format
-- **Multi-Provider** - Works with the API provider selected in the sidebar (Google Gemini, Ollama, LM Studio, Koboldcpp)
+- **Multi-Provider** - Works with the API provider selected in the sidebar, including local, Google, OpenAI-compatible, and custom providers where the selected model supports SVG-style structured output
 - **Export Options** - Download as SVG, PNG, GIF, Animated PNG (APNG), MP4 (H.264), or MOV (lossless)
 - **Browser Preview** - Open animated SVGs in the system browser for full CSS animation playback
 
@@ -147,8 +156,9 @@ A built-in prompt writing helper accessible from the chat input area via the ✨
    - If you downloaded the ZIP, extract it to a folder of your choice and launch `ai_prompt_assistant.exe`.
 
 4. **Start using the app**
-   - The `Free (g4f.space)` provider works without an API key.
-   - Google Gemini still requires your own API key.
+   - The `Free` provider works without an API key.
+   - Google Gemini, OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, and NVIDIA require their own API keys.
+   - Custom providers can be added for OpenAI-compatible local servers or hosted gateways.
    - Local Enhancer is bundled with the app, but first use may trigger one-time runtime or model downloads.
 
 ## Installation for Developers
@@ -157,7 +167,8 @@ A built-in prompt writing helper accessible from the chat input area via the ✨
 - Flutter SDK 3.0 or later
 - Windows, macOS, or Linux desktop platform
 - For local models: Ollama, LM Studio, or Koboldcpp installed and running
-- For Google Gemini: API key from [Google AI Studio](https://aistudio.google.com/app/api-keys)
+- For cloud providers: an API key for the provider you want to use, such as Google Gemini, OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, or NVIDIA
+- For custom providers: an OpenAI-compatible chat endpoint and, if required, its API key
 - **Local Enhancer**: No prerequisites — models and the llama.cpp runtime are downloaded automatically on first use
 
 ### Setup
@@ -197,10 +208,13 @@ A built-in prompt writing helper accessible from the chat input area via the ✨
 ### First Time Setup
 
 1. **Open the sidebar** (hamburger menu icon)
-2. **Select API Provider** (Ollama, LM Studio, Koboldcpp, or Google)
+2. **Select API Provider** (Free, Local Enhancer, Ollama, LM Studio, Koboldcpp, Google, OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, NVIDIA, or a custom provider)
 3. **Configure provider settings**:
-   - For local providers: Set API base URL (default ports: Ollama=11434, LM Studio=1234, Koboldcpp=5001)
-   - For Google: Enter API key
+   - `Free` works immediately; choose a route such as Groq, Ollama, Pollinations, Nvidia, or Gemini.
+   - For local providers: set the API base URL (default ports: Ollama=11434, LM Studio=1234, Koboldcpp=5001).
+   - For cloud providers: enter the provider API key and adjust the base URL if needed.
+   - For custom providers: add an OpenAI-compatible provider in API Settings, then enter its base URL and API key.
+   - Use provider visibility toggles in API Settings to hide providers you do not want in the sidebar.
 4. **Fetch models** using the "Fetch Models" button
 5. **Select one or more models** from the available list
 6. **Choose or create a system prompt**
@@ -372,6 +386,13 @@ ai_prompt_assistant/
 - **Qwen2.5-VL-7B** (8GB VRAM) - Excellent detail and instruction following
 - **LLaVA 1.6** (8GB VRAM) - Popular open-source option
 
+### Cloud Chat Providers
+- **OpenAI** - GPT and reasoning models; supports API model fetching when an API key is configured
+- **Anthropic** - Claude Sonnet, Opus, and Haiku models
+- **Mistral** - Mistral Large, Medium, Small, Nemo, and Codestral-style models
+- **OpenRouter / Groq / Together / SwiftRouter / NVIDIA** - OpenAI-compatible gateways and hosted inference providers; model availability depends on each provider account and endpoint
+- **Custom OpenAI-Compatible Providers** - Use for any compatible local or hosted gateway by adding a provider in API Settings
+
 ### Google Gemini & Imagen Models (Cloud)
 - **imagen-4.0-generate-001** - Latest Imagen 4 model for photorealistic results
 - **gemini-3-pro-image-preview** - High-quality reasoning + image generation
@@ -414,11 +435,20 @@ Enable "Unload model after response" to automatically free VRAM after each gener
 - Verify the API provider is running and accessible
 - Check the base URL and port number
 - Test with `curl http://localhost:PORT/api/tags` (Ollama) or `/v1/models` (others)
+- For cloud or gateway providers, confirm the configured base URL includes the expected API root before the app adds provider-specific paths
 
 ### "No models available"
 - Click "Fetch Models" after starting the API server
 - For LM Studio: Load at least one model in the UI first
 - For Koboldcpp: Launch with `--port 5001 --usecublas` or similar
+- For API-key providers: enter a valid key in API Settings, then fetch models again
+- For custom providers: confirm the endpoint exposes an OpenAI-compatible `/v1/models` response
+
+### Cloud provider request fails
+- Verify the selected provider has an API key saved in API Settings
+- Confirm the selected model is available for your provider account or gateway route
+- Check provider-specific rate limits, billing, regional access, and model availability
+- If an OpenAI-compatible gateway fails, try its documented base URL with `/v1/models` in a browser or terminal
 
 ### Video upload fails
 - Google only: Verify API key is correct
@@ -441,7 +471,6 @@ Enable "Unload model after response" to automatically free VRAM after each gener
 - Try bumping the llama.cpp version in Local Enhancer Settings using the "fetch latest" button
 - Delete the cached runtime from `%LOCALAPPDATA%\ai_prompt_assistant\local_enhancer\runtime` and restart
 
-## Development
 
 ### Run Tests
 ```bash
