@@ -6,7 +6,7 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 
 ![AI Prompt Assistant – Chat Interface](docs/screenshots/chat_main.jpg)
 
-## What's New in v1.2.2
+## What's New in v1.3.0
 - **Expanded Provider Catalog** - Added first-class chat providers for OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, and NVIDIA.
 - **Custom OpenAI-Compatible Providers** - Add your own provider name, base URL, and API key for self-hosted or gateway APIs that speak the OpenAI chat format.
 - **Provider Settings Manager** - Enable or hide providers from the sidebar, configure per-provider API keys and base URLs, and keep the sidebar focused on the providers you use.
