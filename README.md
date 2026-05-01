@@ -4,7 +4,7 @@ A powerful Flutter desktop application for analyzing images and videos using mul
 
 **[Try Online Demo](https://ai-prompt-assistant-web.vercel.app/)**
 
-![AI Prompt Assistant – Chat Interface](docs/screenshots/chat_main.jpg)
+![AI Prompt Assistant – Chat Interface](docs/screenshots/banner.png)
 
 ## What's New in v1.3.0
 - **Expanded Provider Catalog** - Added first-class chat providers for OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, and NVIDIA.
