@@ -1,13 +1,62 @@
-# What's New in v1.3.0
+# What's New in v1.4.0
 
 ## Highlights
+
+### Interactive Proactive Co-Creator
+An intelligent prompt co-creation interface inspired by proactive co-creator research. Rather than just running standard chat, this mode helps you decompose, analyze, and enrich your creative ideas.
+- **Belief Graph Decomposition** — Automatically parses your prompt into structured entities, visual attributes, and relationships.
+- **Atomic Clarifying Questions** — Dynamically generates 3 focused, single-topic questions with multiple choice options to resolve ambiguities.
+- **Proactiveness Levels** — Configure the AI's creativity level (Low, Medium, High). Higher levels infer details and suggest creative additions.
+- **Global Context & Diversity** — The engine avoids assuming Western norms and actively suggests diverse ethnicities, visual styles, and cultural details.
+- **Reference Image Grounding** — Uses attached images as a "source of truth", mapping visible details and asking clarifying questions on intended modifications.
+- **Interactive UI Cards** — Adjust entities, select alternative values, and answer clarifications directly via a rich interactive panel inside the chat bubble.
+
+### Unified API Settings Studio
+Manage all AI providers from a centralized, beautiful configuration interface.
+- **Centralized Dashboard** — Configure API keys, base URLs, and parameters for all local and cloud-based LLM backends.
+- **Expandable Cards & Visibility Toggles** — Clean layout with expandable cards and toggles to show/hide providers from the sidebar.
+- **Comprehensive Provider List** — Native support for Google Gemini, Vertex AI, OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, NVIDIA NIM, Ollama, LM Studio, Koboldcpp, and the Free Provider.
+
+### Prompt Library & Local Seed Service
+The prompt library is now more robust, performant, and self-contained.
+- **Offline Seeding** — Bundles and initializes trending prompt libraries (such as Nano Banana, Seedance 2.0, Grok Imagine) directly from local assets on first run.
+- **Media Download Support** — Easily download preview videos and images from prompt galleries straight to your local drive.
+- **Persistent Storage & Search** — Fast local search, sorting, and persistent storage support for prompt library entries.
+
+### Agent Workflow & Plan Panel Enhancements
+- **Rerun from Task** — Re-run agent plan execution starting from a specific task when a plan is paused or completed.
+- **Session Model Picker Override** — Honorable per-session model overrides via the Skills toolbar picker during plan execution.
+- **Retry Failed Commands** — Offers a quick "Retry command" option in the Agent Turn card to rerun failed shell commands.
+- **Skill Detail Panel** — Hover over any skill to open a detailed documentation dialog, rendering its `SKILL.md` and allowing you to click on example prompts to prefill chat.
+
+### Model Additions & Chat Tweaks
+- **Gemini 3.5 Flash** — Added support under Google Vertex AI.
+- **Message Editing & Regeneration** — Hover controls in chat bubbles for editing user messages and regenerating assistant responses.
+- **Auto-Sync and Dependency Updates** — Core backend improvements, upgraded dependencies, and robust async sync operations.
+
+---
+
+# What's New in v1.3.2
+
+
+## Highlights
+### Skills Screen
+The new **Skills** screen is the easiest way to run agent skills in AI Prompt Assistant. Open the screen, choose a skill, create a session, and describe the task. The app handles the skill instructions, workspace, approvals, attachments, and prerequisite checks for you.
+
+- **Zero Setup Required** - Built-in skills are already available, and required skill assets are installed automatically. No manual skill installation is needed.
+- **Built-In Skills** - HyperFrames, GSAP, HyperFrames CLI, HyperFrames Registry, Website to HyperFrames, and Remotion are included.
+- **Free to Run** - Skills can use the Free provider routes, so they can run without paid API keys when a suitable free model is selected.
+- **Local Model Friendly** - Skills can also run through local providers such as Ollama, LM Studio, Koboldcpp, or other OpenAI-compatible local endpoints.
+- **Add Your Own Skills** - Use **Add skill** in the Skills panel and paste an `owner/repo` value or a full GitHub URL. The app finds the skill bundle and installs it into your local skills library.
+- **Agent Workflow Tools** - Sessions get their own working folders, file attachments, requirement checks, command approval controls, safe-command auto approval, and plan-and-execute mode.
+
 ### Libraries Tab
 The prompt-library experience has been upgraded from a single Nano Banana gallery into a unified **Libraries** tab that supports multiple prompt sources in one place.
 
 - **Multi-Source Browser** — switch between Nano Banana Pro, Seedance 2.0, GPT Image 1.5, SeeDream 4.5, Gemini 3, and Grok Imagine from the same screen
 
 ### Free Provider
-A new **Free** provider that connects to  public relay — no API key, no account, no setup required.
+A new **Free** provider that connects to a public relay — no API key, no account, no setup required.
 
 - **5 Routes** — Groq, Ollama, Pollinations, Nvidia NIM, and Gemini; switch with a single dropdown in the sidebar
 - **Searchable Model Picker** — type to filter the full model list returned by the selected route; tap a row to select (single-select radio style)

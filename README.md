@@ -1,514 +1,397 @@
-# AI Prompt Assistant - Flutter Desktop App
+# AI Prompt Assistant
 
-A powerful Flutter desktop application for analyzing images and videos using multiple AI vision models and generating AI-enhanced prompts for image/video generation workflows.
+AI Prompt Assistant is a Flutter desktop app for building, improving, analyzing, and generating AI prompts with images, video, local models, cloud APIs, and guided agent skills.
 
-**[Try Online Demo](https://ai-prompt-assistant-web.vercel.app/)**
+[Try the online demo](https://ai-prompt-assistant-web.vercel.app/) | [Download releases](https://github.com/rorsaeed/ai-prompt-assistant-pro/releases) | [Release notes](WHATS_NEW.md) | [Quick start](QUICKSTART.md)
 
-![AI Prompt Assistant – Chat Interface](docs/screenshots/banner.png)
+![AI Prompt Assistant chat interface](docs/screenshots/banner.png)
 
-## What's New in v1.3.0
-- **Expanded Provider Catalog** - Added first-class chat providers for OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, and NVIDIA.
-- **Custom OpenAI-Compatible Providers** - Add your own provider name, base URL, and API key for self-hosted or gateway APIs that speak the OpenAI chat format.
-- **Provider Settings Manager** - Enable or hide providers from the sidebar, configure per-provider API keys and base URLs, and keep the sidebar focused on the providers you use.
-- **Free Provider** - New zero-config cloud provider. No API key needed. Choose from Groq, Ollama, Pollinations, Nvidia, and Gemini routes via the public G4F relay.
-- **Searchable Model Picker** - The Free provider replaces chip selection with a live-search list so you can quickly find models from large route catalogs.
-- **Free Provider is Now Default** - New installs open with the Free provider selected so users can start chatting immediately.
-- **Gemma 4 in Local Enhancer** - Added **Gemma 4 E4B** and **Gemma 4 26B A4B** as built-in Local Enhancer models.
-- **PromptFill Template Studio** - Added the native PromptFill workflow for browsing, editing, and filling structured prompt templates directly inside the desktop app.
+## What You Can Do
 
-For a release-focused summary, see [WHATS_NEW.md](WHATS_NEW.md).
+- Chat with one or more AI models at the same time.
+- Co-create and refine prompts interactively using an editable belief graph and clarifying questions.
+- Analyze images and videos, including batch image folders.
+- Generate and edit images with Gemini / Imagen-style workflows.
+- Generate, extend, and merge videos with Veo / Google Video FX workflows.
+- Improve raw ideas into structured prompts, cinematic prompts, or JSON prompt payloads.
+- Run built-in agent skills for video, animation, and web-to-video workflows.
+- Use free routes, local providers, cloud providers, or any OpenAI-compatible endpoint.
+- Keep conversations, prompt libraries, templates, media, and skill sessions organized locally.
 
-## Features
+## Latest Release: v1.4.0
 
-### Multi-Provider Support
-- **Free** - Zero-configuration cloud provider via the public G4F relay — no API key required. Choose from Groq, Ollama, Pollinations, Nvidia, and Gemini routes with a searchable model picker
-- **Ollama** - Local model hosting with keep-alive configuration
-- **LM Studio** - Local OpenAI-compatible API with model unloading
-- **Koboldcpp** - Local inference server
-- **Google Gemini** - Cloud API with image and video support
-- **OpenAI** - GPT, reasoning, image, and video-capable models with per-provider API key support
-- **Anthropic** - Claude chat models via a dedicated Anthropic provider
-- **Mistral** - Mistral chat models and supported image tooling
-- **OpenRouter, Groq, Together, SwiftRouter, NVIDIA** - OpenAI-compatible cloud and gateway providers with configurable base URLs
-- **Custom Providers** - Add any OpenAI-compatible endpoint from the API settings screen, then fetch models and use it like a built-in provider
-- **Provider Visibility Controls** - Show only the providers you want in the sidebar while keeping all provider settings available in the API settings dialog
-- **Veo Video Generation** - Powered by Google Video FX for professional cinematic results
-- **Image Studio** - High-quality image generation using Gemini 3 and Imagen 4 models
-- **Local Enhancer** - Self-contained GGUF-based prompt enhancer. No third-party software required — models and the llama.cpp runtime are downloaded automatically on first use
+Version `1.4.0+1` introduces the Interactive Proactive Co-Creator prompt pipeline, a unified API Settings configuration studio, local prompt library seeding, and enhanced agent workflow tools.
 
-### Image Studio (Generation & Editing)
-- **Text to Image** - Create stunning visuals from descriptive prompts
-- **Image to Image** - Use reference images to guide style, composition, and content
-- **"Surprise Me"** - One-click creative prompt generation for both text-to-image and editing workflows
-- **"Use as Reference"** - Instantly use any generated image as a starting point for further variations
-- **Advanced Resolution** - Select between 1K, 2K, and 4K output (model dependent)
-- **Aspect Ratio Control** - Standard 1:1, Landscape 16:9, or Portrait 9:16 support
-- **Model Support** - Integrated Gemini 3 Pro, Gemini 2.5 Flash, and Imagen 4 models
+- **Interactive Proactive Co-Creator** — Deconstruct prompt concepts into an editable belief graph (entities, attributes, relationships) and answer dynamic clarifying questions to co-create and refine high-quality prompts.
+- **Unified API Settings Studio** — Easily configure base URLs, API keys, and visibility toggles for all local, cloud, and gateway providers (Ollama, LM Studio, Koboldcpp, Gemini, OpenAI, Anthropic, Mistral, OpenRouter, Together, Groq, SwiftRouter, NVIDIA NIM, and the Free Provider) in a clean dashboard.
+- **Offline Prompt Library Seeding** — Automatically bundles and initializes trending prompt libraries (Nano Banana, Seedance 2.0, Grok Imagine) from local assets for instant availability.
+- **Media Download Support** — Save preview videos and images from prompt galleries directly to your local storage.
+- **Agent Workflow Upgrades** — Re-run agent executions starting from specific tasks, override session models, and retry failed terminal commands inline.
+- **Vertex AI Gemini 3.5 Flash** — Added support for Gemini 3.5 Flash vision workflows.
 
-### Image Studio Generation
+See [WHATS_NEW.md](WHATS_NEW.md) for the full release history.
 
-1. **Switch to Image Studio Tab** in the sidebar
-2. **Select Model**: Choose between Imagen 4, Gemini 3 Pro (preview), or Gemini 2.5 Flash
-3. **Configure Settings**: Select Aspect Ratio and Resolution (1K/2K/4K for Pro models)
-4. **Choose Mode**:
-   - *Text to Image*: Enter a prompt or use 🎲 **Surprise Me** for inspiration
-   - *Image to Image*: Attach a reference image or use ↺ **Use as Reference** on a previously generated image
-5. **Improve Prompt**: Use the ✨ wand icon to have an LLM enhance your base prompt for better results
-6. **Generate**: Click the Send icon to start generation
 
-![Image Studio – Text to Image Generation](docs/screenshots/image_studio.jpg)
+## Feature Overview
+
+### Providers
+
+| Provider | Best for | Notes |
+| --- | --- | --- |
+| Free | Zero-configuration chat and experimentation | Uses public relay routes such as Groq, Ollama, Pollinations, Nvidia, and Gemini. No API key required. |
+| Local Enhancer | Offline prompt rewriting with bundled GGUF models | Downloads the llama.cpp runtime and selected model assets on first use. |
+| Ollama | Local chat and vision models | Default URL is `http://localhost:11434`. |
+| LM Studio | Local OpenAI-compatible models | Default URL is `http://localhost:1234`. |
+| Koboldcpp | Local GGUF inference | Default URL is `http://localhost:5001`. |
+| Google Gemini | Image, video, and vision workflows | Supports Google Files API video upload and image/video generation features. |
+| OpenAI, Anthropic, Mistral | Cloud chat, reasoning, and multimodal models | API keys are configured in the app. |
+| OpenRouter, Groq, Together, SwiftRouter, NVIDIA | Hosted gateways and OpenAI-compatible APIs | Base URLs and keys are configurable. |
+| Custom providers | Any compatible endpoint | Add OpenAI-compatible local servers or hosted gateways from API Settings. |
+
+### Core Workflows
+
+- **Chat** - Stream responses, compare multiple selected models, attach media, regenerate replies, and save conversations.
+- **Proactive Co-Creator** - Deconstruct prompt concepts into an editable belief graph (entities, attributes, relationships) and answer clarifying questions to generate high-quality refined prompts iteratively.
+- **Image analysis** - Upload one or more images with drag and drop, then extract captions, tags, structured descriptions, or generation prompts.
+- **Video analysis** - Upload videos through Google-compatible workflows with resumable uploads and status polling.
+- **Bulk analysis** - Process whole image folders and optionally write sidecar prompt files next to each image.
+- **System Prompt Builder** - Generate prompts from 11 caption types, 30 length choices, 25 extra options, and 57 predefined prompts.
+- **Prompt Director Pro** - Build model-aware image and video prompts with controls for style, camera, lighting, composition, world, and motion.
+- **Prompt to JSON** - Convert casual prompt ideas into structured JSON payloads with a synthesized `master_prompt`.
+- **Conversation management** - Save, search, export, rename, delete, and organize chats with nested folders.
+
+![Chat interface with multi-model responses](docs/screenshots/chat_interface.jpg)
+
+### Image Studio
+
+Image Studio supports text-to-image and image-to-image generation with model-specific controls.
+
+- Text-to-image generation from detailed prompts.
+- Reference-image workflows for style, composition, or content guidance.
+- One-click **Surprise Me** prompt generation.
+- **Use as Reference** for iterative image variations.
+- Aspect ratios: `1:1`, `16:9`, and `9:16`.
+- Resolution controls for supported models: `1K`, `2K`, and `4K`.
+- Integrated Gemini 3 Pro, Gemini 2.5 Flash, and Imagen 4 style model flows.
+
+![Image Studio text-to-image generation](docs/screenshots/image_studio.jpg)
 
 ### Veo Video Generation
-- **Text to Video** - Generate high-quality cinematic videos from text prompts
-- **Image to Video** - Use start and end images to guide video generation
-- **Extend Video** - Automatically extend existing videos by extracting the last frame and generating a continuation, then seamlessly merging them with FFmpeg
-- **Prompt Enhancement** - Built-in LLM-powered rewriter that uses attached images and video frames to create highly detailed cinematic prompts
-- **Advanced Controls** - Configure aspect ratio (16:9, 9:16) and resolution (720p, 1080p, 4K)
-- **FFmpeg Integration** - Automatic downloading and configuration of FFmpeg for complex video operations (Windows auto-download)
 
-### SVG Generator
-- **Text to SVG** - Describe any object, icon, or scene and generate a fully self-contained SVG vector graphic
-- **Animated SVG** - Toggle to Animated mode to produce CSS-animated SVGs with looping `@keyframes` effects
-- **Reference Image** - Attach an image as a visual reference; the AI recreates it in vector format
-- **Multi-Provider** - Works with the API provider selected in the sidebar, including local, Google, OpenAI-compatible, and custom providers where the selected model supports SVG-style structured output
-- **Export Options** - Download as SVG, PNG, GIF, Animated PNG (APNG), MP4 (H.264), or MOV (lossless)
-- **Browser Preview** - Open animated SVGs in the system browser for full CSS animation playback
+The Veo workflow is built for cinematic video prompts and iterative video creation.
+
+- Text-to-video generation.
+- Image-to-video generation with start and end frames.
+- Video extension by extracting the final frame and generating a continuation.
+- Automatic FFmpeg download and setup on Windows for frame extraction and merging.
+- Prompt enhancement using attached images and extracted video frames.
+- Aspect ratio and resolution controls, including `16:9`, `9:16`, `720p`, `1080p`, and `4K` where supported.
+
+![Veo video generation](docs/screenshots/veo_generation.jpg)
+
+### Local Enhancer
+
+Local Enhancer is a self-contained provider for prompt rewriting.
+
+- No Python, Ollama, or external model server required.
+- Downloads model assets and llama.cpp runtime automatically on first use.
+- Supports modes such as T2V, T2I, T2T, I2V, IT2V, I2I, IT2I, V2V, VT2V, V2I, and VT2I.
+- Can automatically choose the best enhancement mode based on attached media and desired output type.
+- Includes controls for max tokens, temperature, top-p, seed, video analysis FPS, and llama.cpp runtime version.
+- Supports audio-aware video prompting for compatible Gemma 4 workflows, with graceful fallback to visual-only prompting.
+
+![Local Enhancer settings and workflow](docs/screenshots/local.jpg)
+
+### Skills
+
+The Skills screen lets you run guided agent workflows from inside the app.
+
+- Built-in skills: HyperFrames, GSAP, HyperFrames CLI, HyperFrames Registry, Website to HyperFrames, and Remotion.
+- Add more skills by pasting an `owner/repo` value, a GitHub repository URL, or a URL to a skill folder.
+- Each session can have its own workspace, attachments, and command approval policy.
+- Requirement checks help detect tools such as Node.js or FFmpeg before the agent starts.
+- Plan-and-execute mode gives longer tasks a visible plan before commands are run.
 
 ### PromptFill Template Studio
-- **Native PromptFill Workflow** - Browse, edit, and fill structured prompt templates directly inside the desktop app
-- **Complete PromptFill Dataset** - Includes all imported categories, banks, and templates from the original app, normalized to English-only labels and content
-- **Inline Variable Editing** - Click any variable chip in a template to pick from bank terms, local options, or add a custom value
-- **Smart Terms** - Generate context-aware variable suggestions with AI inside the variable picker dialog
-- **AI Smart Split** - Convert a plain prompt into a reusable variable-based template using the current chat model
-- **Template Media Types** - Switch templates between image and video modes with a built-in type selector
-- **Image and Video Preview** - Templates support cover images and inline video preview for original video templates
-- **Large Image Lightbox** - Click a template preview image to open a large zoomable preview
-- **Template Media Editing** - Set network URLs, local cover images, and video preview URLs directly from the editor
 
-> **PromptFill support is adapted from [Prompt Fill](https://github.com/TanShilongMario/PromptFill) by
-> [@TanShilongMario](https://github.com/TanShilongMario).** This desktop app ports the structured template workflow, imported data, and media-preview concepts into the native Flutter experience.
+PromptFill support is adapted from [Prompt Fill](https://github.com/TanShilongMario/PromptFill) by [@TanShilongMario](https://github.com/TanShilongMario).
 
-### Core Capabilities
-- **Multi-Model Execution** - Run queries against multiple models simultaneously
-- **Image Analysis** - Upload and analyze multiple images with drag-and-drop support
-- **Video Analysis** - Full Google Files API integration with resumable uploads (Google only)
-- **Chat Interface** - Conversation-based interaction with streaming responses
-- **Bulk Analysis** - Batch process entire folders of images
-- **System Prompt Builder** - Generate prompts with 11 caption types, 30 length options, and 25 extra options
-- **Prompt Director Pro** - AI image/video prompt writing helper with model-aware dropdowns for style, camera, lighting, composition, and video movement
-- **PromptFill Template Authoring** - Build reusable prompt systems with banks, variables, template tags, and media previews
-- **Conversation Management** - Save, load, rename, delete, and move conversations to folders
-- **Conversation Folders** - Organize chats in a nested folder tree with subfolder support
-- **Conversation Search** - Real-time search with debounce across all saved conversations
-- **Export** - Export conversations to TXT or JSON format
-- **Nano Banana Prompt Library** - Curated prompt gallery with search, category filters, image thumbnails, and one-click copy or send-to-Image-Studio
-- **Theme Customization** - Multiple color palettes with light / dark / system mode toggle
+- Browse imported categories, banks, and templates.
+- Fill inline variable chips from bank terms, local options, or custom values.
+- Generate context-aware variable suggestions with Smart Terms.
+- Convert plain prompts into reusable variable templates with AI Smart Split.
+- Maintain image and video preview media for templates.
 
-### Local Enhancer
-- **No Setup Required** - Models and the llama.cpp runtime are downloaded automatically on first use. No Python, no Ollama, no third-party tools needed.
-- **Built-In Model Catalog** - LLaMA JoyCaption, Qwen3.5-4B Abliterated, Qwen3.5-9B Abliterated, Gemma 4 E4B, and Gemma 4 26B A4B.
-- **Auto Mode Detection** - Automatically picks the right enhancement mode (T2V, I2V, V2V, I2I, etc.) based on what media you have attached and your chosen output type.
-- **Auto System Prompt** - Global toggle that selects the optimal system prompt for each mode automatically, or lets you choose a custom prompt manually.
-- **Generation Output Type** - Choose Image or Video output; the enhancer adjusts its prompt style accordingly.
-- **11 Enhancement Modes** - T2V, T2I, T2T, I2V, IT2V, I2I, IT2I, V2V, VT2V, V2I, VT2I — covering all text, image, and video input combinations.
-- **Configurable LLM Parameters** - Adjust max tokens, temperature, top-p, seed, video analysis FPS, and llama.cpp runtime version from the Local Enhancer Settings dialog.
-- **llama.cpp Version Control** - Choose which llama.cpp release to use, with a one-click "fetch latest" button that queries the GitHub API.
-- **Audio-Aware Video Prompting** - When using Gemma 4 E4B with a video that has an audio track (and a compatible llama.cpp audio mmproj), the enhancer can incorporate speech, ambience, and sound design into the rewritten prompt. Falls back to visual-only gracefully.
-- **Graceful Fallback** - If audio processing is unsupported or the video has no audio, Local Enhancer automatically falls back to visual-only prompting.
-- **Auto-Launch / Auto-Stop** - Runtime starts automatically when you select the provider and shuts down when you switch away.
+![PromptFill template editor](docs/screenshots/PromptFill.jpg)
 
-### System Prompt Builder
-- **11 Caption Types**: Descriptive, Stable Diffusion, MidJourney, Danbooru tags, Art Critic, Product Listing, Social Media, and more
-- **30 Length Options**: From "Very Short" (20-40 words) to "260 words", plus custom word counts
-- **25 Extra Options**: Control ethnicity/gender, lighting, camera details, watermarks, aesthetic quality, and more
-- **57 Predefined Prompts**: Built-in prompts for video formats, image editing, tagging, photography styles, and a dedicated **Local Enhancer Modes** category covering all 11 enhancement modes
+### Prompt Libraries
 
-### Prompt to JSON Pipeline
-- **Two-Step AI Enhancement** - Advanced pipeline that converts simple casual text prompts into highly structured JSON payloads.
-- **Dynamic Field Selection** - Automatically analyzes your input to determine which specific fields are relevant (e.g., camera movement, lighting, wardrobe, audio, temporal flow).
-- **Master Prompt Generation** - Synthesizes all selected variables into a cohesive, highly descriptive `master_prompt` paragraph perfect for advanced models.
-- **Provider Agnostic** - Runs on whichever model and API provider you have currently selected in the sidebar.
-- **Generation Integration** - Integrated directly into generation screens (e.g., Veo Video generation via the "JSON Enhance" button), turning simple ideas into cinematic, parameter-rich JSON objects.
+The Libraries tab brings several prompt sources into one searchable browser.
 
-### Prompt Director Pro
-A built-in prompt writing helper accessible from the chat input area via the ✨ magic wand button. Supports 9 AI models across image and video generation:
+- Sources include Nano Banana Pro, Seedance 2.0, GPT Image 1.5, SeeDream 4.5, Gemini 3, and Grok Imagine.
+- Search by title, description, or prompt body.
+- Filter by source-specific groups and categories.
+- Copy prompts, preview cards, or send prompts into PromptFill.
 
-- **9 AI Models**: Flux, Midjourney 7, Nano Banana, SeeDream 4, Z-Image, Qwen, Wan 2.2/2.1 Video, LTX-2 Video
-- **Model-Aware Sections**: Each model shows only its relevant controls — image models show camera/composition, video models add movement/pacing
-- **6 Control Sections**: Style & Look (art style, film look, color palette, texture), World & Environment, Camera Gear (body, focal length, format, lens, aperture), Composition (shot size, angle), Lighting & Mood, Video Movement (relation, camera movement, pacing)
-- **Randomize**: One-click randomization of all visible settings for creative inspiration
-- **Live Preview**: See the assembled prompt in real-time before inserting it into the chat
-- **Direct Integration**: Generated prompts are inserted directly into the message input box
-
-![Prompt Director Pro Dialog](docs/screenshots/prompt_director.jpg)
-
-## Installation for Users
-
-1. **Open the latest release**
-   - Download the newest package from [GitHub Releases](https://github.com/rorsaeed/ai-prompt-assistant-pro/releases).
-
-2. **Choose the Windows package you want**
-   - `Installer_Win_X64.exe` for the normal installer experience
-   - `ai_prompt_assistant.zip` for a portable build you can extract and run manually
-
-3. **Install or extract**
-   - If you downloaded the installer, run it and follow the setup steps.
-   - If you downloaded the ZIP, extract it to a folder of your choice and launch `ai_prompt_assistant.exe`.
-
-4. **Start using the app**
-   - The `Free` provider works without an API key.
-   - Google Gemini, OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, and NVIDIA require their own API keys.
-   - Custom providers can be added for OpenAI-compatible local servers or hosted gateways.
-   - Local Enhancer is bundled with the app, but first use may trigger one-time runtime or model downloads.
-
-## Installation for Developers
-
-### Prerequisites
-- Flutter SDK 3.0 or later
-- Windows, macOS, or Linux desktop platform
-- For local models: Ollama, LM Studio, or Koboldcpp installed and running
-- For cloud providers: an API key for the provider you want to use, such as Google Gemini, OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, or NVIDIA
-- For custom providers: an OpenAI-compatible chat endpoint and, if required, its API key
-- **Local Enhancer**: No prerequisites — models and the llama.cpp runtime are downloaded automatically on first use
-
-### Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/rorsaeed/ai-prompt-assistant-pro.git
-   cd ai-prompt-assistant-pro
-   ```
-
-2. **Install dependencies**
-   ```bash
-   flutter pub get
-   ```
-
-3. **Run the app**
-   ```bash
-   # Windows
-   flutter run -d windows
-
-   # macOS
-   flutter run -d macos
-
-   # Linux
-   flutter run -d linux
-   ```
-
-4. **Build release version**
-   ```bash
-   flutter build windows
-   flutter build macos
-   flutter build linux
-   ```
-
-## Usage
-
-### First Time Setup
-
-1. **Open the sidebar** (hamburger menu icon)
-2. **Select API Provider** (Free, Local Enhancer, Ollama, LM Studio, Koboldcpp, Google, OpenAI, Anthropic, Mistral, OpenRouter, Groq, Together, SwiftRouter, NVIDIA, or a custom provider)
-3. **Configure provider settings**:
-   - `Free` works immediately; choose a route such as Groq, Ollama, Pollinations, Nvidia, or Gemini.
-   - For local providers: set the API base URL (default ports: Ollama=11434, LM Studio=1234, Koboldcpp=5001).
-   - For cloud providers: enter the provider API key and adjust the base URL if needed.
-   - For custom providers: add an OpenAI-compatible provider in API Settings, then enter its base URL and API key.
-   - Use provider visibility toggles in API Settings to hide providers you do not want in the sidebar.
-4. **Fetch models** using the "Fetch Models" button
-5. **Select one or more models** from the available list
-6. **Choose or create a system prompt**
-
-![Sidebar – Provider Configuration](docs/screenshots/sidebar_config.jpg)
-
-### Chat Interface
-
-1. **Upload images** (optional): Click "Add Images" or drag-and-drop
-2. **Upload videos** (Google only): Click "Add Videos"
-3. **Enter your message** or click "Analyze Image(s)" for media-only analysis
-4. **View streaming responses** from all selected models simultaneously
-5. **Open Prompt Director** (✨ wand icon next to message box) to build image/video prompts with guided dropdowns
-6. **Regenerate** any response by clicking the refresh icon
-7. **Delete** messages using the × button
-
-![Chat Interface – Multi-Model Responses](docs/screenshots/chat_interface.jpg)
-
-### Local Enhancer
-
-1. **Select "Local Enhancer"** in the API Provider list in the sidebar — the runtime starts automatically
-2. **Open Local Enhancer Settings** (gear icon) to configure the model, LLM parameters, video FPS, and llama.cpp version
-3. **Enable Auto System Prompt** (toggle in the sidebar) to let the app pick the best system prompt based on your attached media and output type, or disable it to use your own custom prompt
-4. **Select Output Type** (Image or Video) in the sidebar when Auto System Prompt is on
-5. **Attach media** (optional): images or videos — the mode is auto-detected from what you attach
-6. **Enter a prompt** and send — the enhancer rewrites it into a detailed generation prompt
-7. **Switch away** from Local Enhancer to automatically shut down the runtime
-
-![Local Enhancer](docs/screenshots/local.jpg)
-
-### Veo Video Generation
-
-1. **Switch to Veo Tab** in the sidebar
-2. **Select Generation Mode**: Text to Video, Frame to Video, or Extend Video
-3. **Configure Settings**: Choose aspect ratio (Landscape/Portrait) and Resolution
-4. **Attach Media**: Click "Attach Media" or drag-and-drop images/videos.
-   - *Frame to Video*: Add a Start Frame and/or End Frame image.
-   - *Extend Video*: Add an Input Video.
-5. **Enhance Prompt**: Click the ✨ wand icon in the input bar to have an LLM rewrite your prompt based on your text and any attached media (extracted frames are used for videos).
-6. **Generate**: Click the Send icon to start the generation process.
-7. **Extend Existing Videos**: Use the "Extend" button on any generated video bubble to automatically load it into the input for continuation.
-
-![Veo Video Generation](docs/screenshots/veo_generation.jpg)
-
-### Bulk Analysis
-
-1. **Select a folder** containing images (.png, .jpg, .jpeg, .webp)
-2. **Choose system prompt** from the sidebar
-3. **Enable "Save prompts to text file"** to save results alongside images
-4. **Click "Analyze All Images"** to process the entire folder
-5. **View progress** and results in the grid layout
-
-![Bulk Analysis – Image Grid](docs/screenshots/bulk_analysis.jpg)
-
-### System Prompt Builder
-
-1. **Open the sidebar** and expand "System Prompt Builder"
-2. **Select caption type** (e.g., "Stable Diffusion Prompt")
-3. **Choose caption length** (e.g., "Long" or "150 words")
-4. **Enable extra options** (e.g., "Include lighting info", "No ethnicity")
-5. **If using NAME_OPTION**: Enter the specific name for people in images
-6. **Click "Generate and Apply Prompt"** to build and apply the prompt
-7. **Save custom prompts** with a unique name for later reuse
-
-![System Prompt Builder](docs/screenshots/prompt_builder.jpg)
-
-### Conversation Management
-
-- **New Chat**: Click "New Chat" button to start fresh
-- **Load Chat**: Select from the conversation tree in the sidebar
-- **Rename Chat**: Right-click (⋮ menu) on a conversation → Rename
-- **Delete Chat**: Right-click (⋮ menu) on a conversation → Delete
-- **Move Chat**: Right-click (⋮ menu) on a conversation → Move to Folder
-- **Export**: Use "to .txt" or "to .json" buttons to export current conversation
-- **Search**: Use the search box at the top of the sidebar to filter conversations
-
-### Conversation Folders
-
-- **Create Folder**: Click the folder icon in the sidebar
-- **Subfolders**: Right-click a folder → New Subfolder for nested organization
-- **Rename / Delete Folder**: Right-click (⋮ menu) on any folder
-- **Expand / Collapse**: Click a folder to toggle its contents
+![Prompt Libraries](docs/screenshots/nano_banana.jpg)
 
 ### SVG Generator
 
-1. **Switch to the SVG Tab** in the top navigation bar
-2. **Select provider and model** in the sidebar — the generator uses whichever API provider and model are currently selected
-3. **Choose Mode**:
-   - *Static*: Generates a clean, detailed flat-art vector graphic
-   - *Animated*: Adds CSS `@keyframes` animations inside the SVG for looping effects
-4. **Attach Reference Image** (optional): Click the image icon to upload a photo — the AI will recreate it as an SVG
-5. **Describe your subject**: Type a description (e.g., "Space Rocket", "Isometric House", "Cyberpunk Helmet") or pick a quick suggestion chip
-6. **Generate**: Click the Send icon or press Enter
-7. **Export the result** using the toolbar on each generated card:
-   - **Copy** SVG source code to clipboard
-   - **Download** as `.svg`
-   - **Export** as PNG, GIF, Animated PNG, MP4, or MOV via the export menu
-   - **Play in Browser** (animated SVGs) — opens a full-screen HTML preview in your default browser
+- Generate static SVGs from text.
+- Generate animated SVGs with CSS `@keyframes`.
+- Attach a reference image for vector recreation.
+- Export as SVG, PNG, GIF, APNG, MP4, or MOV.
+- Preview animated SVGs in the browser for smoother playback.
 
-> **Tip**: For animated SVGs, use the Play in Browser button for the smoothest preview. In-app animated rendering requires the Windows WebView2 runtime.
+## Install
 
-### Prompt to JSON Pipeline
+### For Users
 
-1. **Access the Pipeline**: The Prompt to JSON pipeline is integrated into generation screens, such as the Veo Video tab. Look for the **JSON Enhance** button.
-2. **Enter a Simple Prompt**: Type a basic concept or idea into the text input.
-3. **Execute Pipeline**: Click the **JSON Enhance** button.
-4. **Step 1 (Field Selection)**: The AI automatically determines which JSON fields (e.g., `camera_movement`, `lighting`, `color_palette`) are needed for your specific idea.
-5. **Step 2 (Generation)**: The AI populates those specific fields and generates a comprehensive `master_prompt`.
-6. **Review & Use**: The highly structured parameter payload is returned and ready to be used as a detailed prompt for high-end generation models.
+1. Open the [latest GitHub release](https://github.com/rorsaeed/ai-prompt-assistant-pro/releases).
+2. Download one of the Windows packages:
+   - `Installer_Win_X64.exe` for the standard installer.
+   - `ai_prompt_assistant.zip` for a portable build.
+3. Install or extract the app.
+4. Launch `ai_prompt_assistant.exe`.
 
-<video src="https://github.com/user-attachments/assets/cf5137a5-f3d8-4425-87f9-7f7009b4cd61" controls width="100%"></video>
+The **Free** provider works without an API key. Cloud providers require their own API keys. Local Enhancer and built-in skills install required assets automatically when first used.
 
-### Nano Banana Prompt Library
+### For Developers
 
-1. **Switch to the Prompts Tab** in the top navigation bar
-2. **Browse or Search** prompts by title, description, or content using the search bar
-3. **Filter by Category** using the group chips (e.g., Portrait, Landscape, Abstract)
-4. **Copy Prompt**: Click **Copy Prompt** on any card to copy it to clipboard
-5. **Use Image**: Click **Use Image** to download the reference image and open it directly in Image Studio with the prompt pre-filled
-6. **Preview**: Click any card to open a full detail dialog with zoom support
+Prerequisites:
 
-![Nano Banana Prompt Library](docs/screenshots/nano_banana.jpg)
+- Flutter SDK 3.0 or later.
+- Windows, macOS, or Linux desktop support enabled.
+- Optional local providers: Ollama, LM Studio, or Koboldcpp.
+- Optional cloud provider API keys.
 
-### PromptFill
+Setup:
 
-1. **Switch to the PromptFill tab** in the top navigation bar
-2. **Browse templates** by search, type, and tag filters in the left sidebar
-3. **Select a template** to open it in the visual editor
-4. **Fill variables** by clicking any inline chip in the template body
-5. **Use Smart Terms** in the picker dialog to generate AI suggestions for the current variable in the context of the full template
-6. **Add custom values** when no existing bank option fits your use case
-7. **Edit template content** with the Edit button to work directly with raw `{{variable}}` placeholders
-8. **Use AI Smart Split** from the AI tools menu to turn a plain prompt into a reusable template with extracted variables
-9. **Manage template preview media** from the preview panel:
-   - switch the template between **Image** and **Video** type
-   - set or replace the cover image from a local file or URL
-   - set the video preview URL for video templates
-   - click the cover image to open a large zoomable preview
-10. **Preview original video templates** inline in the editor when a template includes a saved `videoUrl`
+```bash
+git clone https://github.com/rorsaeed/ai-prompt-assistant-pro.git
+cd ai-prompt-assistant-pro
+flutter pub get
+```
 
-![PromptFill](docs/screenshots/PromptFill.jpg)
-![PromptFill](docs/screenshots/PromptFill2.jpg)
+Run:
+
+```bash
+flutter run -d windows
+flutter run -d macos
+flutter run -d linux
+```
+
+Build:
+
+```bash
+flutter build windows --release
+flutter build macos --release
+flutter build linux --release
+```
+
+## First Run
+
+1. Open the sidebar.
+2. Choose an API provider.
+3. Configure the provider:
+   - `Free` works immediately.
+   - Local providers need a running local server and base URL.
+   - Cloud providers need an API key.
+   - Custom providers need an OpenAI-compatible base URL.
+4. Click **Fetch Models**.
+5. Select one or more models.
+6. Choose or create a system prompt.
+7. Attach images or videos when needed, then send a message.
+
+![Provider configuration sidebar](docs/screenshots/sidebar_config.jpg)
+
+## Common Workflows
+
+### Analyze Images
+
+1. Select a provider and model that supports vision.
+2. Attach one or more images.
+3. Choose a system prompt or create one with System Prompt Builder.
+4. Send a message or click **Analyze Image(s)**.
+5. Compare outputs if multiple models are selected.
+
+### Generate Images
+
+1. Open **Image Studio**.
+2. Pick a model.
+3. Choose text-to-image or image-to-image mode.
+4. Set aspect ratio and resolution.
+5. Write a prompt, use **Surprise Me**, or enhance with the wand button.
+6. Generate, then optionally reuse an output as a reference.
+
+### Generate or Extend Video
+
+1. Open the **Veo** tab.
+2. Choose text-to-video, frame-to-video, or extend-video mode.
+3. Attach start/end images or an input video when needed.
+4. Enhance the prompt with the wand button.
+5. Generate the video.
+6. Use **Extend** on an output to continue the scene.
+
+### Run a Skill
+
+1. Open **Skills**.
+2. Choose a built-in skill or **Auto**.
+3. Create a session and choose a working directory.
+4. Attach files if useful.
+5. Describe the task.
+6. Review command approvals as the skill runs.
+
+### Use PromptFill
+
+1. Open **PromptFill**.
+2. Select a template.
+3. Click variable chips to choose values.
+4. Use Smart Terms for AI-generated options.
+5. Preview or edit template media.
+6. Copy the completed prompt or send it into a generation workflow.
 
 ## Configuration
 
-### Config File Location
-- **Windows**: `C:\Users\<username>\Documents\ai_prompt_assistant\data\config.json`
-- **macOS**: `~/Documents/ai_prompt_assistant/data/config.json`
-- **Linux**: `~/Documents/ai_prompt_assistant/data/config.json`
+User data is stored in the documents folder:
 
-### Data Storage Structure
-```
+| Platform | Config path |
+| --- | --- |
+| Windows | `C:\Users\<username>\Documents\ai_prompt_assistant\data\config.json` |
+| macOS | `~/Documents/ai_prompt_assistant/data/config.json` |
+| Linux | `~/Documents/ai_prompt_assistant/data/config.json` |
+
+Typical storage layout:
+
+```text
 ai_prompt_assistant/
-├── data/
-│   ├── config.json                    # User settings
-│   ├── system_prompts.json            # Custom prompts
-│   └── conversations/                 # Saved chats
-│       └── *.json
-├── temp_images/                       # Uploaded images
-└── temp_videos/                       # Uploaded videos
+|-- data/
+|   |-- config.json
+|   |-- system_prompts.json
+|   `-- conversations/
+|       `-- *.json
+|-- skills/
+|-- skills_workspace/
+|-- temp_images/
+`-- temp_videos/
 ```
 
 ## Recommended Models
 
-### Local Models (Ollama/LM Studio)
-- **Llama JoyCaption Alpha One** (12GB VRAM) - Best for system prompt builder
-- **Gemma 3 27B** (24GB VRAM) - High quality, complex scenes
-- **Gemma 3 12B** (8GB VRAM) - Balanced performance
-- **Qwen2.5-VL-7B** (8GB VRAM) - Excellent detail and instruction following
-- **LLaVA 1.6** (8GB VRAM) - Popular open-source option
+### Local Models
 
-### Cloud Chat Providers
-- **OpenAI** - GPT and reasoning models; supports API model fetching when an API key is configured
-- **Anthropic** - Claude Sonnet, Opus, and Haiku models
-- **Mistral** - Mistral Large, Medium, Small, Nemo, and Codestral-style models
-- **OpenRouter / Groq / Together / SwiftRouter / NVIDIA** - OpenAI-compatible gateways and hosted inference providers; model availability depends on each provider account and endpoint
-- **Custom OpenAI-Compatible Providers** - Use for any compatible local or hosted gateway by adding a provider in API Settings
+- **Llama JoyCaption Alpha One** - Strong image-to-prompt and captioning model.
+- **Gemma 3 27B** - High-quality reasoning for complex scenes.
+- **Gemma 3 12B** - Balanced local performance.
+- **Qwen2.5-VL-7B** - Strong detail extraction and instruction following.
+- **LLaVA 1.6** - Popular open-source vision option.
 
-### Google Gemini & Imagen Models (Cloud)
-- **imagen-4.0-generate-001** - Latest Imagen 4 model for photorealistic results
-- **gemini-3-pro-image-preview** - High-quality reasoning + image generation
-- **gemini-3-flash-image-preview** - Fast, lightweight image generation
-- **gemini-2.5-flash-image** - Efficient and reliable image creation
-- **gemini-3-flash-preview** - Fast text/vision analysis
-- **gemini-3-pro-preview** - Best quality text/vision analysis
+### Cloud and Gateway Providers
 
-## Advanced Features
-
-### Ollama Keep-Alive
-- **-1**: Use server default
-- **0**: Unload immediately after response
-- **Positive number**: Keep loaded for N seconds
-
-### LM Studio Model Unloading
-Enable "Unload model after response" to automatically free VRAM after each generation (requires `lms` CLI tool in PATH).
-
-### Video Processing (Google)
-1. Video is uploaded to Google Files API with resumable protocol
-2. Processing status polled every 2 seconds (5-minute timeout)
-3. Once ACTIVE, video URI is included in generation request
-4. Supports: mp4, avi, mov, mkv, webm, flv, wmv, m4v
-
-### Streaming Responses
-- Real-time token-by-token display
-- Automatic `<think>...</think>` tag filtering
-- Concurrent streams for multiple models
-- Auto-scroll to latest content
-
-### FFmpeg Engine & Video FX
-- **Automatic Setup**: Automatically downloads `ffmpeg.exe` for Windows on first run to the application support directory.
-- **Last Frame Extraction**: Uses FFmpeg to accurately extract the final frame of a video for use as a starting point for extensions.
-- **Seamless Merging**: Concatenates multiple video segments into a single file while preserving audio and ensuring consistent timestamps.
-- **Audio Preservation**: Intelligently handles audio tracks during video extensions to maintain professional quality.
+- **OpenAI** - GPT, reasoning, image, and multimodal workflows.
+- **Anthropic** - Claude chat models.
+- **Mistral** - Mistral chat models and supported image tooling.
+- **Google Gemini / Imagen** - Vision, image generation, and video workflows.
+- **OpenRouter, Groq, Together, SwiftRouter, NVIDIA** - Hosted model gateways with model availability controlled by each provider.
 
 ## Troubleshooting
 
-### "Connection refused" error
-- Verify the API provider is running and accessible
-- Check the base URL and port number
-- Test with `curl http://localhost:PORT/api/tags` (Ollama) or `/v1/models` (others)
-- For cloud or gateway providers, confirm the configured base URL includes the expected API root before the app adds provider-specific paths
+### Connection Refused
 
-### "No models available"
-- Click "Fetch Models" after starting the API server
-- For LM Studio: Load at least one model in the UI first
-- For Koboldcpp: Launch with `--port 5001 --usecublas` or similar
-- For API-key providers: enter a valid key in API Settings, then fetch models again
-- For custom providers: confirm the endpoint exposes an OpenAI-compatible `/v1/models` response
+- Confirm the local model server is running.
+- Check the provider base URL and port.
+- Test the endpoint directly, for example `curl http://localhost:11434/api/tags` for Ollama.
 
-### Cloud provider request fails
-- Verify the selected provider has an API key saved in API Settings
-- Confirm the selected model is available for your provider account or gateway route
-- Check provider-specific rate limits, billing, regional access, and model availability
-- If an OpenAI-compatible gateway fails, try its documented base URL with `/v1/models` in a browser or terminal
+### No Models Available
 
-### Video upload fails
-- Google only: Verify API key is correct
-- Check video file size (large files may exceed quota)
-- Ensure video format is supported
-- Check Google Cloud console for quota limits
+- Click **Fetch Models** after the provider is running.
+- For LM Studio, load a model in LM Studio first.
+- For API-key providers, verify the key and account access.
+- For custom providers, confirm the endpoint exposes an OpenAI-compatible `/v1/models` response.
 
-### Slow generation
-- Local models: Reduce model size or enable GPU acceleration
-- Google: Check API rate limits and billing
-- Try selecting fewer models for concurrent execution
+### Cloud Request Fails
 
-### Images not loading
-- Verify file permissions in temp_images directory
-- Check supported formats: png, jpg, jpeg, webp
-- Try re-uploading the image
+- Confirm the selected provider has an API key saved in API Settings.
+- Verify the selected model is available for that account or gateway route.
+- Check rate limits, billing, regional availability, and provider status.
 
-### Local Enhancer fails to start
-- Check the log file in your system temp directory (`local_enhancer_<model>_<timestamp>.log`)
-- Try bumping the llama.cpp version in Local Enhancer Settings using the "fetch latest" button
-- Delete the cached runtime from `%LOCALAPPDATA%\ai_prompt_assistant\local_enhancer\runtime` and restart
+### Video Upload or Generation Fails
 
+- Google video workflows require a valid Google API key and supported file type.
+- Large files may exceed quota or timeout.
+- Check that FFmpeg is available when extending or merging video segments.
 
-### Run Tests
+### Local Enhancer Fails to Start
+
+- Check the `local_enhancer_<model>_<timestamp>.log` file in the system temp directory.
+- Try updating the llama.cpp runtime version from Local Enhancer Settings.
+- Delete the cached runtime under `%LOCALAPPDATA%\ai_prompt_assistant\local_enhancer\runtime` and restart.
+
+## Development
+
+Run tests:
+
 ```bash
 flutter test
 ```
 
-### Code Generation
-```bash
-# Generate json_serializable code
-dart run build_runner build --delete-conflicting-outputs
+Run code generation:
 
-# Watch mode for development
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
+
+Watch code generation:
+
+```bash
 dart run build_runner watch --delete-conflicting-outputs
 ```
 
-## Architecture
+### Project Structure
 
-- **State Management**: Provider pattern with ChangeNotifier
-- **HTTP Client**: Dio for streaming SSE responses and multipart uploads
-- **Local Inference**: llama.cpp (`llama-server`) subprocess, downloaded and managed automatically
-- **Video Processing**: FFmpeg (raw CLI) for frame extraction, audio extraction, and video concatenation
-- **Media Playback**: `media_kit` for cross-platform video preview and thumbnails
-- **File I/O**: path_provider for cross-platform directories
-- **Serialization**: json_serializable for type-safe JSON
-- **Desktop Integration**: window_manager for window control
-- **Theming**: Dynamic Material 3 color schemes generated from multiple seed palettes, with light / dark / system mode support
+```text
+lib/
+|-- main.dart
+|-- models/
+|-- providers/
+|-- screens/
+|-- services/
+|-- theme/
+|-- utils/
+`-- widgets/
+```
+
+Important areas:
+
+- `lib/services/api_client.dart` - Multi-provider API access and streaming.
+- `lib/services/local_enhancer_runtime.dart` - Managed llama.cpp runtime.
+- `lib/services/video_generation_service.dart` - Google Video FX workflow.
+- `lib/services/video_utils.dart` - FFmpeg operations.
+- `lib/services/skill_*` - Skill discovery, execution, prerequisites, attachments, and caching.
+- `lib/providers/*` - App state via `ChangeNotifier`.
+- `lib/screens/*` - Main desktop screens.
+
+### Architecture
+
+- **Framework**: Flutter desktop.
+- **State management**: Provider and `ChangeNotifier`.
+- **HTTP**: Dio with streaming support.
+- **Local inference**: Managed llama.cpp subprocess.
+- **Video processing**: FFmpeg CLI.
+- **Media playback**: `media_kit`.
+- **Persistence**: Local JSON and SQLite where appropriate.
+- **Serialization**: `json_serializable`.
+- **Theming**: Material 3 color schemes with light, dark, and system modes.
 
 ## License
 
-This application is **partially open-source**.
+This application is partially open-source.
 
 - The core framework, UI components, and general integrations are open-source.
-- Certain advanced features, custom AI prompt configurations, and proprietary modules may be closed-source or subject to specific usage restrictions.
+- Certain advanced features, prompt configurations, and proprietary modules may be closed-source or subject to additional restrictions.
 
-Please refer to individual file headers or contact the repository owner for detailed licensing information, commercial usage, and distribution rights.
+Refer to individual file headers or contact the repository owner for commercial usage and distribution questions.
 
 ## Support
 
-For issues, feature requests, or contributions, please visit the GitHub repository.
-
-
+For bugs, feature requests, or contributions, use the GitHub repository issues and discussions.
